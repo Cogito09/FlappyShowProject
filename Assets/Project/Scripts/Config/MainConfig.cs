@@ -11,11 +11,13 @@ namespace Flappy
         public static LoadingConfig LoadingConfig => Instance._loaderConfig;
         public static PoolConfig FlappyGameplayPoolConfig => Instance._flappyPoolConfig;
         public static FlappyGameplayConfig FlappyGameplayConfig => Instance._flappyGameplayConfig;
+        public static FlappyObstaclesConfig FlappyObstaclesConfig => Instance.flappyObstaclesConfig;
         [SerializeField] private PopupConfig popupConfig;
         [SerializeField] private LoadingConfig _loaderConfig;
         [SerializeField] private FlappyPrefabsConfig _prefabsConfig;
         [SerializeField] private PoolConfig _flappyPoolConfig;
         [SerializeField] private FlappyGameplayConfig _flappyGameplayConfig;
+        [SerializeField] private FlappyObstaclesConfig flappyObstaclesConfig;
         public override LoadingConfig GetLoadingConfig()
         {
             return LoadingConfig;

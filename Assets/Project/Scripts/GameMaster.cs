@@ -1,6 +1,5 @@
 using Cngine;
 using Cngine.PopupSystem;
-using Project.Scripts.Flappy;
 using UnityEngine;
 
 namespace Flappy

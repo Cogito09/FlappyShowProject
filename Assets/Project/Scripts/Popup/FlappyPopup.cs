@@ -1,5 +1,6 @@
 ﻿using System;
 using Cngine;
+using Cngine.PopupSystem;
 
 namespace Flappy
 {
@@ -7,22 +8,22 @@ namespace Flappy
     {
         public override void AnimateShow(Action onEnabled)
         {
-            throw new NotImplementedException();
+
         }
 
         public override void AnimateHide(Action onFinish)
         {
-            throw new NotImplementedException();
+
         }
 
         public override void Setup(object parameter)
         {
-            throw new NotImplementedException();
+
         }
 
         public override void OnClickExit()
         {
-            throw new NotImplementedException();
-        }
+            GameMaster.PopupManager.Hide((FlappyPopupType)_popupType);
+                 }
     }
 }
