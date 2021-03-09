@@ -5,13 +5,15 @@ namespace Flappy
     public class FlappyScoreManager
     {
         public ScoreData CurrentScoreData;
-
+        private int _bombCounter;
+        
         private FlappyGameplayConfig _flappyGameplayConfig;
         private FlappyGameplayConfig FlappyGameplayConfig => _flappyGameplayConfig ??= MainConfig.FlappyGameplayConfig;
         private FlappyGameplayConfig.FlappyStageConfig CurrentStageConfig => _currentStageConfig ??= FlappyGameplayConfig.GetStageConfig(CurrentScoreData.CurrentStage);
         private FlappyGameplayConfig.FlappyStageConfig _currentStageConfig;
+        private int? _maxNumberOfBombs;
+        private int MaxNumberOfBombs => _maxNumberOfBombs ??= FlappyGameplayConfig.MaxNumberOfBombs;
 
-        private int _bombCounter;
         
         public void IncrementScore()
         {
@@ -32,6 +34,11 @@ namespace Flappy
 
         private void IncrementBombCounter()
         {
+            if (CurrentScoreData.NumberOfBombs >= MaxNumberOfBombs)
+            {
+                return;
+            }
+            
             _bombCounter++;
             if (_bombCounter == FlappyGameplayConfig.AddBombScore)
             {

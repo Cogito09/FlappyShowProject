@@ -30,6 +30,5 @@ namespace Flappy
         {
             _bombs.text = GameMaster.FlappyScoreManager.CurrentScoreData.NumberOfBombs.ToString();
         }
-
     }
 }

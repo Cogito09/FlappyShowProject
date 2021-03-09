@@ -18,6 +18,8 @@ namespace Flappy
         public Vector3 BridStartPosition;
         public float YPositionRandomizeUpperRange;
         public float YPositionRandomizeDownRange;
+        public int AddBombScore;
+        public int MaxNumberOfBombs;
         
         public List<FlappyStageConfig> FlappyStageConfigs;
         [Serializable]
@@ -44,7 +46,6 @@ namespace Flappy
             }
         }
 
-        public int AddBombScore;
 
         public FlappyObstaclesConfig.ObstacleConfig GetObstacleTypeByScore(ScoreData currentScoreData)
         {
