@@ -15,3 +15,8 @@ MonoBehaviour:
   popupConfig: {fileID: 11400000, guid: 8083062605b3bb741ae40c5307660289, type: 2}
   _loaderConfig: {fileID: 11400000, guid: f310f7cfbcec9f04d862ff182e74638a, type: 2}
   _prefabsConfig: {fileID: 11400000, guid: 58a71cc42ca6e6740b35d0696fc94922, type: 2}
+  _flappyPoolConfig: {fileID: 11400000, guid: 343b7b58bd933c14ba908e29fd8f978f, type: 2}
+  _flappyGameplayConfig: {fileID: 11400000, guid: b62162a6e3f0f594b849ba957b8ab65e,
+    type: 2}
+  flappyObstaclesConfig: {fileID: 11400000, guid: f272d91f2b065484aa8f3e40b3102337,
+    type: 2}

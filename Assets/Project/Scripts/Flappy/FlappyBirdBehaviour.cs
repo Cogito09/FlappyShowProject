@@ -66,10 +66,14 @@ public class FlappyBirdBehaviour : MonoBehaviour
 
     public void Reset()
     {
-        transform.position = Vector3.zero;
+        transform.position = BirdStartPosition;
         _lastPosition = Vector3.zero;
     }
-    
+
+    private FlappyGameplayConfig _flappyGameplayConfig;
+    private FlappyGameplayConfig FlappyGameplayConfig => _flappyGameplayConfig ??= MainConfig.FlappyGameplayConfig;
+    public Vector3 BirdStartPosition => FlappyGameplayConfig.BridStartPosition;
+
     private void StopAnimation()
     {
         _animator.StartPlayback();

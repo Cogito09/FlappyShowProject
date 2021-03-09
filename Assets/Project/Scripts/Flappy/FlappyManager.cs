@@ -10,7 +10,8 @@ public class FlappyManager : MonoBehaviour
     private static FlappyManager _instance;
 
     public bool IsPlaying;
-    public ScoreData CurrentScoreData;
+    public ScoreData CurrentScoreData => GameMaster.FlappyScoreManager.CurrentScoreData;
+
     
     private FlappyGameplayConfig _flappyGameplayConfig;
     private FlappyGameplayConfig FlappyGameplayConfig => _flappyGameplayConfig ??= MainConfig.FlappyGameplayConfig;
@@ -20,6 +21,7 @@ public class FlappyManager : MonoBehaviour
     private float Speed => _speed ??= FlappyGameplayConfig.WorldMovementSpeed;
     private double ObstacleRemoveXPosition => FlappyGameplayConfig.ObstacleRemoveXPosition;
     private double DistanceBetweenObstacles => FlappyGameplayConfig.DistanceBetweenObstacles;
+
 
 
     private float _lastSpawnedObstacleTraveledDistance;
@@ -145,12 +147,7 @@ public class FlappyManager : MonoBehaviour
         
         _lastSpawnedObstacleTraveledDistance = 0;
     }
-    
-    private void ResetScore()
-    {
-        CurrentScoreData = new ScoreData();
-    }
-    
+
     private void StartRound()
     {       
         Log.Info("Round Started");
@@ -162,7 +159,6 @@ public class FlappyManager : MonoBehaviour
         Log.Info("Restart");
         ResetTiles();
         ResetObstacles();
-        ResetScore();
         IsPlaying = false;
     }
 
