@@ -5,6 +5,11 @@ using UnityEngine.PlayerLoop;
 
 public class FlappyBirdBehaviour : MonoBehaviour
 {
+    private FlappyGameplayConfig _flappyGameplayConfig;
+    private FlappyGameplayConfig FlappyGameplayConfig => _flappyGameplayConfig ??= MainConfig.FlappyGameplayConfig;
+    private Vector3 BirdStartPosition => FlappyGameplayConfig.BridStartPosition;
+    [SerializeField] private string StopAnimatonTrigger;
+    [SerializeField] private string StartAnimatonTrigger;
     [SerializeField] private float _gravitySpeed;
     [SerializeField] private float _forceMultiplier; 
     [SerializeField] private AnimationCurve _bumpCurve;
@@ -66,20 +71,18 @@ public class FlappyBirdBehaviour : MonoBehaviour
 
     public void Reset()
     {
+        _animator.StopPlayback();
         transform.position = BirdStartPosition;
         _lastPosition = Vector3.zero;
     }
-
-    private FlappyGameplayConfig _flappyGameplayConfig;
-    private FlappyGameplayConfig FlappyGameplayConfig => _flappyGameplayConfig ??= MainConfig.FlappyGameplayConfig;
-    public Vector3 BirdStartPosition => FlappyGameplayConfig.BridStartPosition;
-
+    
     private void StopAnimation()
     {
-        _animator.StartPlayback();
+        _animator.SetTrigger(StopAnimatonTrigger);
     }
+    
     private void StartAnimation()
     {
-        _animator.StopPlayback();
+        _animator.SetTrigger(StartAnimatonTrigger);
     }
 }

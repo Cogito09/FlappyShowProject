@@ -31,7 +31,8 @@ namespace Flappy
         
         private void Setup()
         {
-            gameObject.ChangeActive(FlappyManager.Instance == null || FlappyManager.Instance.IsPlaying == false);
+            var showPanel = FlappyManager.Instance != null && FlappyManager.Instance.IsPlaying == false;
+            gameObject.ChangeActive(showPanel);
         }
         
         private void UpdateScore()

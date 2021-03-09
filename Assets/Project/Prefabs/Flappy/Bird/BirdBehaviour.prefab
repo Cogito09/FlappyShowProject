@@ -296,6 +296,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a89cae30e6974b849b70a41b4cecd0bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StopAnimatonTrigger: Freeze
+  StartAnimatonTrigger: Fly
   _gravitySpeed: 9
   _forceMultiplier: 2
   _bumpCurve:

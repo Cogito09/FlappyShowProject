@@ -8,7 +8,12 @@ namespace Flappy
     public class InitialLoaderBehaviour : InitialLoaderTemplate
     {
         protected override void AddLoadActions(ref List<IEnumerator> list) { }
-
+        
+        private void Awake()
+        {
+            SetRegisterPopupAction((popup, i) => GameMaster.PopupManager.RegisterPopup(popup, (FlappyPopupType)i));
+        }
+        
         protected override IEnumerator InitializeGameSceneManager()
         {
             GameMaster.ScenesManager.Initialize<SceneType>(() => GameMaster.PopupManager.HideAll());

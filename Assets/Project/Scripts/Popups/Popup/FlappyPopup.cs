@@ -8,17 +8,16 @@ namespace Flappy
     {
         public override void AnimateShow(Action onEnabled)
         {
-
+            gameObject.ChangeActive(true);
         }
 
         public override void AnimateHide(Action onFinish)
         {
-
+            gameObject.ChangeActive(false);
         }
 
         public override void Setup(object parameter)
         {
-
         }
 
         public override void OnClickExit()

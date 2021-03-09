@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 namespace Flappy
 {
-    public class FlappySceneBehaviour : BaseSceneBehaviour
+    public class FlappySceneLoaderBehaviour : BaseSceneBehaviour
     {
         public int FlappySceneIndex;
         private GameObject PoolMarker;
@@ -60,7 +60,7 @@ namespace Flappy
         
         private IEnumerator LoadScene()
         {
-            var asyncOperation = SceneManager.LoadSceneAsync(FlappySceneIndex);
+            var asyncOperation = SceneManager.LoadSceneAsync(FlappySceneIndex,LoadSceneMode.Additive);
             yield return new WaitWhile(() => asyncOperation.isDone == false);
             SceneManager.SetActiveScene(SceneManager.GetSceneAt(FlappySceneIndex));
             Log.Info($"FlappyScene of index {FlappySceneIndex} Loaded");

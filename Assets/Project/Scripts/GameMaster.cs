@@ -15,7 +15,7 @@ namespace Flappy
         private FlappyScoreManager _flappyScoreManager;
         
         public static MainConfig MainConfig => _instance._mainConfig ??= (MainConfig) GameMasterBase.BaseMainConfig;
-        public static PoolManager<FlappyPrefabTemplate, FlappyPrefabsConfig> PoolManager => _instance._poolManager;
+        public static PoolManager<FlappyPrefabTemplate, FlappyPrefabsConfig> PoolManager => _instance._poolManager ??=  new PoolManager<FlappyPrefabTemplate, FlappyPrefabsConfig>(MainConfig.PrefabsConfig);
         public static FlappyScoreManager FlappyScoreManager => _instance._flappyScoreManager;
         public static ScenesManager ScenesManager => _instance._sceneManager;
         public static PopupManager<FlappyPopupType> PopupManager => _instance._popupManager;
