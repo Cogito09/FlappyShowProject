@@ -13,7 +13,7 @@ namespace Flappy
         
         public override int GetType()
         {
-            throw new System.NotImplementedException();
+            return FlappySceneIndex;
         }
 
         public override void RegisterSceneOnSceneManager()

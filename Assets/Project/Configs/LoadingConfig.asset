@@ -16,5 +16,4 @@ MonoBehaviour:
   - {fileID: 1722641819945601800, guid: 465dca2175e9274469c7100b4047149d, type: 3}
   PrefabsToBeSpawnedAtInit: []
   UIPrefabsToBeSpawnedAtInit:
-  - {fileID: 1525004104315310590, guid: 6cc8e043a5d6e7548b946811e0e6cc2f, type: 3}
-  - {fileID: 4249204434249467648, guid: a98a30bf1e928134a884157a92c24d8b, type: 3}
+  - {fileID: 303273152504601746, guid: c00ed2c85ce3efa46abc13bc9e615624, type: 3}

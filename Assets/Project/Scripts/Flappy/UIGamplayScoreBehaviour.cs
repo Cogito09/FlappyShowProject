@@ -1,4 +1,5 @@
 ﻿using System;
+using Cngine;
 using TMPro;
 using UnityEngine;
 
@@ -13,14 +14,26 @@ namespace Flappy
         {
             EventManager.OnScoreChanged += UpdateScore;
             EventManager.OnBombsQuantityChanged += OnBombQuantityChanged;
+            EventManager.OnFlappyRoundFinished += Setup;
+            EventManager.OnFlappyRoundStarted += Setup;
+            EventManager.OnFlappyRoundReseted += Setup;
+            Setup();
         }
 
         private void OnDestroy()
         {
             EventManager.OnScoreChanged -= UpdateScore;
             EventManager.OnBombsQuantityChanged -= OnBombQuantityChanged;
+            EventManager.OnFlappyRoundFinished -= Setup;
+            EventManager.OnFlappyRoundStarted -= Setup;
+            EventManager.OnFlappyRoundReseted -= Setup;
         }
-
+        
+        private void Setup()
+        {
+            gameObject.ChangeActive(FlappyManager.Instance == null || FlappyManager.Instance.IsPlaying == false);
+        }
+        
         private void UpdateScore()
         {
             _score.text = GameMaster.FlappyScoreManager.CurrentScoreData.Score.ToString();

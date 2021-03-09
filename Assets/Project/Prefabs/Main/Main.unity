@@ -190,6 +190,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1634869962, guid: 29d136a4e2c9d4b43800fcd03ed0aa7f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 15889178633, guid: 29d136a4e2c9d4b43800fcd03ed0aa7f, type: 3}
       propertyPath: LoadersMarker
       value: 
@@ -198,6 +202,11 @@ PrefabInstance:
       propertyPath: PrefabsMarker
       value: 
       objectReference: {fileID: 1241956601}
+    - target: {fileID: 1588314450895895398, guid: 29d136a4e2c9d4b43800fcd03ed0aa7f,
+        type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 2204034094310127946, guid: 29d136a4e2c9d4b43800fcd03ed0aa7f,
         type: 3}
       propertyPath: m_Name
