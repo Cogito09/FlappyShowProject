@@ -41,3 +41,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Pipes
+    uniqueID: 2778615401
+    locked: 0
+  - name: FrontBg
+    uniqueID: 356396411
+    locked: 0
+  - name: Bird
+    uniqueID: 395259625
+    locked: 0

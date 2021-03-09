@@ -12,3 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0bc8bde144942eba821dcf53dab1f63, type: 3}
   m_Name: PrefabsConfig
   m_EditorClassIdentifier: 
+  Templates:
+  - PrefabType: 1
+    PrefabObject: {fileID: 8084176881135230604, guid: bd470b52753e2024ba6e4dfa8d130ab0,
+      type: 3}
+  - PrefabType: 2
+    PrefabObject: {fileID: 8084176881135230604, guid: fac3b8b99717b1e42a9e503b8b4e10f5,
+      type: 3}
+  - PrefabType: 3
+    PrefabObject: {fileID: 2803001384205281919, guid: 3d83976f065362d4db83c61ed75446cf,
+      type: 3}

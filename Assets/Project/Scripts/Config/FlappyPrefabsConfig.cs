@@ -15,6 +15,7 @@ namespace Flappy
         }
     }
     
+    [Serializable]
     public class FlappyPrefabTemplate : IBasePrefabTemplate
     {
         public FlappyPrefabType PrefabType;
