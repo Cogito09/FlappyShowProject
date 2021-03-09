@@ -1,0 +1,3 @@
+[submodule "Assets/Cngine"]
+	path = Assets/Cngine
+	url = https://github.com/Cogito09/Cngine.git
