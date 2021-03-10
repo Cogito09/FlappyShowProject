@@ -1228,56 +1228,47 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StopAnimatonTrigger: Freeze
   StartAnimatonTrigger: Fly
-  _gravityForce: 5
-  _jumpForceMultiplier: 0.135
-  _jumpCurveDuration: 0.5
+  _gravityForce: 6
+  _jumpForceMultiplier: 0.07
+  _jumpCurveDuration: 0.3
   _jumpCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0.000001705368
-      value: 0.0042367396
-      inSlope: 18.558683
-      outSlope: 18.558683
+      value: 0.0030160365
+      inSlope: 22.222494
+      outSlope: 22.222494
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.016271196
+      outWeight: 0.052001335
     - serializedVersion: 3
-      time: 0.09814847
-      value: 1.0366089
-      inSlope: 0.8622326
-      outSlope: 0.8622326
+      time: 0.097281694
+      value: 0.9552798
+      inSlope: 1.5333565
+      outSlope: 1.5333565
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.16273452
-      outWeight: 0.32435068
+      inWeight: 0.28359374
+      outWeight: 0.14436968
     - serializedVersion: 3
-      time: 0.28586036
-      value: 0.74210757
-      inSlope: -3.2351413
-      outSlope: -3.2351413
+      time: 0.28675538
+      value: 0.8716406
+      inSlope: -2.3905299
+      outSlope: -2.3905299
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.19407946
+      inWeight: 0.072255746
+      outWeight: 0.036056306
     - serializedVersion: 3
-      time: 0.37156922
-      value: 0.4850405
-      inSlope: -2.4403644
-      outSlope: -2.4403644
+      time: 0.99912643
+      value: -0.0017470145
+      inSlope: -0.43675867
+      outSlope: -0.43675867
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.02728179
-    - serializedVersion: 3
-      time: 1.0012207
-      value: 0.0012052143
-      inSlope: -0.1366269
-      outSlope: -0.1366269
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.04638869
+      inWeight: 0.043839395
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2

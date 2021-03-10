@@ -98,6 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd73f7cf8897b964abf89e37c316cfc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _potaTween: {fileID: 0}
   _sprite: {fileID: 0}
 --- !u!114 &8180855231432910816
 MonoBehaviour:
@@ -169,8 +170,9 @@ GameObject:
   - component: {fileID: 2803001384205281857}
   - component: {fileID: 2803001384205281856}
   - component: {fileID: 2803001384205281858}
+  - component: {fileID: 4350379050574281600}
   m_Layer: 0
-  m_Name: Background
+  m_Name: BackgroundTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -256,7 +258,103 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd73f7cf8897b964abf89e37c316cfc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _potaTween: {fileID: 4350379050574281600}
   _sprite: {fileID: 2803001384205281856}
+--- !u!114 &4350379050574281600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2803001384205281919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78d4591adc7746bfba6883e66170b45e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Tag: 
+  Id: 0
+  PlayOnStart: 0
+  PlayOnEnable: 0
+  Duration: 2
+  Speed: 1
+  Delay: 0
+  Loop: 0
+  LoopsNumber: 0
+  EasingReference: 1
+  EaseEquation: 0
+  Curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  FlipCurveOnReverse: 1
+  Position:
+    From: {x: 0, y: 0, z: 0}
+    To: {x: 0, y: 0, z: 0}
+    IsLocal: 0
+    IsRelative: 0
+    IgnoreAxis:
+      X: 0
+      Y: 0
+      Z: 0
+  Rotation:
+    From: {x: 0, y: 0, z: 0}
+    To: {x: 0, y: 0, z: 0}
+    IsLocal: 0
+    IsRelative: 0
+    IgnoreAxis:
+      X: 0
+      Y: 0
+      Z: 0
+  Scale:
+    From: {x: 0, y: 0, z: 0}
+    To: {x: 0, y: 0, z: 0}
+    IsLocal: 0
+    IsRelative: 0
+    IgnoreAxis:
+      X: 0
+      Y: 0
+      Z: 0
+  Color:
+    From: {r: 0, g: 0, b: 0, a: 0}
+    To: {r: 0, g: 0, b: 0, a: 0}
+  Alpha:
+    From: 0
+    To: 0
+    Value: 0
+  Float:
+    From: 0
+    To: 0
+    Value: 0
+  _isPlaying: 0
+  _isReversing: 0
+  _isPaused: 0
+  _onStart:
+    m_PersistentCalls:
+      m_Calls: []
+  _onComplete:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &4424276462712161658
 GameObject:
   m_ObjectHideFlags: 0
@@ -303,6 +401,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd73f7cf8897b964abf89e37c316cfc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _potaTween: {fileID: 0}
   _sprite: {fileID: 0}
 --- !u!114 &5837741791652912986
 MonoBehaviour:
@@ -461,6 +560,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd73f7cf8897b964abf89e37c316cfc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _potaTween: {fileID: 0}
   _sprite: {fileID: 0}
 --- !u!114 &547074829083985259
 MonoBehaviour:

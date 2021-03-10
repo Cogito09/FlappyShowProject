@@ -49,7 +49,7 @@ public class FlappyBirdBehaviour : MonoBehaviour
         
         ReadInput();
         PreformMovement();
-        SimulateGravity();
+
     }
 
     private void ReadInput()
@@ -66,18 +66,16 @@ public class FlappyBirdBehaviour : MonoBehaviour
 
         var bumpTime = timePassedSinceTap / _jumpCurveDuration;
         var upForce =  _jumpCurve.Evaluate(bumpTime) * _jumpForceMultiplier;
-
-        transform.Translate(0, upForce, 0);
-    }
-
-    private void SimulateGravity()
-    {
-        transform.Translate(0,GravityForce,0);
+        var bumpInProgress = bumpTime < 1;
+        var force = bumpInProgress ? upForce : GravityForce;
+        
+        transform.Translate(0, force, 0);
     }
     
     private void Bump()
     {
-        if (_lastBumpTimestamp < BombUseDoubleClickInterval && IsAbleToUseBomb)
+        var timePassedSinceTap = Time.time - _lastBumpTimestamp;
+        if (timePassedSinceTap < BombUseDoubleClickInterval && IsAbleToUseBomb)
         {
             LaunchBombUseAnimation();
             EventManager.OnBombUsed?.Invoke();

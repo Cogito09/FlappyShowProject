@@ -33,16 +33,19 @@ namespace Flappy
         {
             var showPanel = FlappyManager.Instance != null && FlappyManager.Instance.IsPlaying == false;
             gameObject.ChangeActive(showPanel);
+            
+            UpdateScore();
+            OnBombQuantityChanged();
         }
         
         private void UpdateScore()
         {
-            _score.text = GameMaster.FlappyScoreManager.CurrentScoreData.Score.ToString();
+            _score.text = GameMaster.FlappyScoreManager?.CurrentScoreData.Score.ToString();
         }
         
         public void OnBombQuantityChanged()
         {
-            _bombs.text = GameMaster.FlappyScoreManager.CurrentScoreData.NumberOfBombs.ToString();
+            _bombs.text = GameMaster.FlappyScoreManager?.CurrentScoreData.NumberOfBombs.ToString();
         }
     }
 }

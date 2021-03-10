@@ -22,10 +22,10 @@ MonoBehaviour:
   BridStartPosition: {x: 0, y: 3, z: 0}
   YPositionRandomizeUpperRange: 4
   YPositionRandomizeDownRange: -1.5
-  AddBombScore: 10
+  AddBombScore: 2
   MaxNumberOfBombs: 3
   _bgYPosition: 1.75
-  BombUseDoubleClickInterval: 0.08
+  BombUseDoubleClickInterval: 0.15
   SightDistance: 3.5
   FlappyStageConfigs:
   - Id: 1
@@ -35,7 +35,7 @@ MonoBehaviour:
     ObstacleType: 1
     ColorRandomizeRange:
       serializedVersion: 2
-      key0: {r: 0.75, g: 1, b: 0.9035205, a: 1}
+      key0: {r: 1, g: 1, b: 1, a: 1}
       key1: {r: 0.4198113, g: 0.7677001, b: 1, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
@@ -43,7 +43,7 @@ MonoBehaviour:
       key5: {r: 0, g: 0, b: 0, a: 0}
       key6: {r: 0, g: 0, b: 0, a: 0}
       key7: {r: 0, g: 0, b: 0, a: 0}
-      ctime0: 0
+      ctime0: 193
       ctime1: 65535
       ctime2: 0
       ctime3: 0

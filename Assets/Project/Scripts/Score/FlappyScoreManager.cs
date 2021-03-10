@@ -7,10 +7,11 @@ namespace Flappy
         public ScoreData CurrentScoreData;
         private int _bombCounter;
         
+        public FlappyGameplayConfig.FlappyStageConfig CurrentStageConfig => _currentStageConfig ??= FlappyGameplayConfig.GetStageConfig(CurrentScoreData.CurrentStage);
+        private FlappyGameplayConfig.FlappyStageConfig _currentStageConfig;
         private FlappyGameplayConfig _flappyGameplayConfig;
         private FlappyGameplayConfig FlappyGameplayConfig => _flappyGameplayConfig ??= MainConfig.FlappyGameplayConfig;
-        private FlappyGameplayConfig.FlappyStageConfig CurrentStageConfig => _currentStageConfig ??= FlappyGameplayConfig.GetStageConfig(CurrentScoreData.CurrentStage);
-        private FlappyGameplayConfig.FlappyStageConfig _currentStageConfig;
+
         private int? _maxNumberOfBombs;
         private int MaxNumberOfBombs => _maxNumberOfBombs ??= FlappyGameplayConfig.MaxNumberOfBombs;
         public bool IsAbleToUseBomb => CurrentScoreData.NumberOfBombs > 0;
@@ -26,6 +27,7 @@ namespace Flappy
             CurrentScoreData.Score++;
             if (CurrentStageConfig.IsWithInScoreRange(CurrentScoreData) == false)
             {
+                CurrentScoreData.CurrentStage++;
                 EventManager.OnStageChanged?.Invoke();
             }
 
@@ -62,6 +64,7 @@ namespace Flappy
         private void OnFlappyRoundReseted()
         {
             CurrentScoreData = new ScoreData();
+            CurrentScoreData.CurrentStage = 1;
             _bombCounter = 0;
             EventManager.OnStageChanged?.Invoke();
         }
@@ -93,6 +96,11 @@ namespace Flappy
             EventManager.OnFlappyRoundReseted -= OnFlappyRoundReseted;
             EventManager.OnStageChanged -= OnStageChanged;
             EventManager.OnBombUsed -= OnBombUsed;
+        }
+
+        public Color GetBackgroundColorOfCurrentScore()
+        {
+            return CurrentStageConfig.GetBackgroundColorOfCurrentScore(CurrentScoreData.Score);
         }
     }
 }

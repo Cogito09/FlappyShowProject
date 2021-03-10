@@ -13,18 +13,9 @@ public class FlappyObstacleBehaviour : PoolObject
     private FlappyObstaclesConfig.ObstacleConfig _obstacleConfig;
     private FlappyObstaclesConfig.ObstacleConfig ObstacleConfig => _obstacleConfig ??= FlappyGameplayConfig.GetObstacleTypeByScore(GameMaster.FlappyScoreManager.CurrentScoreData);
     
-    public Sprite Sprite;
-    public Color Color;
-
-    private void OnEnable()
-    {
-        
-    }
-
-    private void OnDisable()
-    {
-        
-    }
+    private Sprite Sprite;
+    private Color Color;
+    
     
     public void Setup(bool isInitialObstacle = false)
     {

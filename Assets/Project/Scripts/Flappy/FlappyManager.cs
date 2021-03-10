@@ -17,7 +17,7 @@ public class FlappyManager : MonoBehaviour
     private FlappyGameplayConfig _flappyGameplayConfig;
     private FlappyGameplayConfig FlappyGameplayConfig => _flappyGameplayConfig ??= MainConfig.FlappyGameplayConfig;
     private Queue<FlappyObstacleBehaviour> _flappyObstacles = new Queue<FlappyObstacleBehaviour>();
-    private Queue<FlappyTiledObjectBehaviour> _flappyBgs = new Queue<FlappyTiledObjectBehaviour>();
+    private Queue<FlappyTiledBackgroundBehaviour> _flappyBgs = new Queue<FlappyTiledBackgroundBehaviour>();
     private float? _speed;
     private float Speed => _speed ??= FlappyGameplayConfig.WorldMovementSpeed;
     private float? _bGYPosition;
@@ -60,9 +60,26 @@ public class FlappyManager : MonoBehaviour
 
     private void OnBombUsed()
     {
-        while (_flappyObstacles?.Count > 0 && IsInViewRange(_flappyObstacles.Peek().transform.position))
+        if (_flappyObstacles == null)
         {
-            _flappyObstacles.Dequeue().Remove();
+            return;
+        }
+        
+        while (true)
+        {
+            if (_flappyObstacles.Count <= 0)
+            {
+                break;
+            }
+
+            var obstacle = _flappyObstacles.Peek();
+            if (IsInViewRange(obstacle.transform.position))
+            {
+                _flappyObstacles.Dequeue().Remove();
+                return;
+            }
+            
+            break;
         }
     }
 
@@ -139,7 +156,7 @@ public class FlappyManager : MonoBehaviour
         var numberOfTilesToSpawn = FlappyGameplayConfig.TotalNumberOfVisibleTiles;
         for (int i = 0; i < numberOfTilesToSpawn; i++)
         {
-            var obstacle = GameMaster.PoolManager.SpawnObject(FlappyPrefabType.BackgroundTile) as FlappyTiledObjectBehaviour;
+            var obstacle = GameMaster.PoolManager.SpawnObject(FlappyPrefabType.BackgroundTile) as FlappyTiledBackgroundBehaviour;
             if (obstacle == null)
             {
                 Log.Error("Spawned Obstacle is null!");

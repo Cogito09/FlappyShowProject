@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
+using Cngine;
 using Flappy.Editor;
 using UnityEngine;
 using Random = System.Random;
@@ -26,7 +28,6 @@ namespace Flappy
         public double SightDistance;
         public List<FlappyStageConfig> FlappyStageConfigs;
 
-
         [Serializable]
         public class FlappyStageConfig
         {
@@ -49,11 +50,21 @@ namespace Flappy
                 return IsMaxScore ? scoreValue >= MinScoreRangeInclusive :
                     (scoreValue >= MinScoreRangeInclusive && scoreValue < MaxScoreRangeExclusive);
             }
+
+            public Color GetBackgroundColorOfCurrentScore(int score)
+            {
+                // if (score < MinScoreRangeInclusive || score >= MaxScoreRangeExclusive)
+                // {
+                //     Log.Error("Current stage is not within the socre");
+                //     EventManager.OnStageChanged?.Invoke();
+                // }
+
+                var stageScoreProgress = (float)(score - MinScoreRangeInclusive) / (MaxScoreRangeExclusive -MinScoreRangeInclusive);
+                Log.Info($"stageScoreProgress : {stageScoreProgress}");
+                return ColorRandomizeRange.Evaluate(stageScoreProgress);
+            }
         }
-
-
-
-
+        
         public FlappyObstaclesConfig.ObstacleConfig GetObstacleTypeByScore(ScoreData currentScoreData)
         {
             var cfg = FlappyStageConfigs.Find(config => config.IsWithInScoreRange(currentScoreData));
