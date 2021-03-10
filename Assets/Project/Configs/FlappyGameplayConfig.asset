@@ -12,17 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2f29048c0584d5089e6da24f789a142, type: 3}
   m_Name: FlappyGameplayConfig
   m_EditorClassIdentifier: 
-  WorldMovementSpeed: 2
-  MapEdgePosition: -8
-  TotalNumberOfVisibleTiles: 4
-  FirstObstacleSpawnDistance: 4
-  DistanceBetweenObstacles: 4
+  WorldMovementSpeed: 3
+  MapEdgePosition: -6
+  TotalNumberOfVisibleTiles: 3
+  ObstacleSpawnDistanceFromCenter: 4
+  DistanceBetweenObstacles: 4.25
   ObstacleRemoveXPosition: -6
   BridStartPosition: {x: 0, y: 3, z: 0}
   YPositionRandomizeUpperRange: 4
-  YPositionRandomizeDownRange: -1
+  YPositionRandomizeDownRange: -1.5
   AddBombScore: 10
   MaxNumberOfBombs: 3
+  _bgYPosition: 1.75
   FlappyStageConfigs:
   - Id: 0
     MinScoreRangeInclusive: 0
@@ -31,8 +32,8 @@ MonoBehaviour:
     ObstacleType: 1
     ColorRandomizeRange:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 1}
+      key0: {r: 0.75, g: 1, b: 0.9035205, a: 1}
+      key1: {r: 0.4198113, g: 0.7677001, b: 1, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -62,11 +63,11 @@ MonoBehaviour:
     MinScoreRangeInclusive: 4
     MaxScoreRangeExclusive: 8
     IsMaxScore: 0
-    ObstacleType: 2
+    ObstacleType: 1
     ColorRandomizeRange:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 1}
+      key0: {r: 0.42352945, g: 0.7686275, b: 1, a: 1}
+      key1: {r: 0.38330817, g: 0.2216981, b: 1, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -96,11 +97,11 @@ MonoBehaviour:
     MinScoreRangeInclusive: 8
     MaxScoreRangeExclusive: 12
     IsMaxScore: 0
-    ObstacleType: 3
+    ObstacleType: 2
     ColorRandomizeRange:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 1}
+      key0: {r: 0.38431376, g: 0.227451, b: 1, a: 1}
+      key1: {r: 0.6509434, g: 0, b: 0.63870984, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -130,11 +131,11 @@ MonoBehaviour:
     MinScoreRangeInclusive: 12
     MaxScoreRangeExclusive: 16
     IsMaxScore: 0
-    ObstacleType: 0
+    ObstacleType: 2
     ColorRandomizeRange:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 1}
+      key0: {r: 0.6226415, g: 0.09692062, b: 0.36874148, a: 1}
+      key1: {r: 1, g: 0.4029017, b: 0.2216981, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -164,20 +165,20 @@ MonoBehaviour:
     MinScoreRangeInclusive: 16
     MaxScoreRangeExclusive: 20
     IsMaxScore: 0
-    ObstacleType: 0
+    ObstacleType: 3
     ColorRandomizeRange:
       serializedVersion: 2
       key0: {r: 1, g: 1, b: 1, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 1}
-      key2: {r: 0, g: 0, b: 0, a: 0}
+      key1: {r: 1, g: 0.26112244, b: 0.08018869, a: 1}
+      key2: {r: 1, g: 0.8968201, b: 0.2216981, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
       key6: {r: 0, g: 0, b: 0, a: 0}
       key7: {r: 0, g: 0, b: 0, a: 0}
       ctime0: 0
-      ctime1: 65535
-      ctime2: 0
+      ctime1: 964
+      ctime2: 65535
       ctime3: 0
       ctime4: 0
       ctime5: 0
@@ -192,18 +193,18 @@ MonoBehaviour:
       atime6: 0
       atime7: 0
       m_Mode: 0
-      m_NumColorKeys: 2
+      m_NumColorKeys: 3
       m_NumAlphaKeys: 2
   - Id: 0
     MinScoreRangeInclusive: 24
     MaxScoreRangeExclusive: 30
-    IsMaxScore: 0
-    ObstacleType: 0
+    IsMaxScore: 1
+    ObstacleType: 3
     ColorRandomizeRange:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 1}
-      key2: {r: 0, g: 0, b: 0, a: 0}
+      key0: {r: 0.990566, g: 0.8605113, b: 0.098122105, a: 1}
+      key1: {r: 0.41942367, g: 1, b: 0.25943398, a: 1}
+      key2: {r: 1, g: 1, b: 1, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
@@ -211,7 +212,7 @@ MonoBehaviour:
       key7: {r: 0, g: 0, b: 0, a: 0}
       ctime0: 0
       ctime1: 65535
-      ctime2: 0
+      ctime2: 65535
       ctime3: 0
       ctime4: 0
       ctime5: 0

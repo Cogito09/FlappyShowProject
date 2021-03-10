@@ -12,7 +12,7 @@ namespace Flappy
         public float WorldMovementSpeed;
         public float MapEdgePosition;
         public int TotalNumberOfVisibleTiles;
-        public float FirstObstacleSpawnDistance;
+        public float ObstacleSpawnDistanceFromCenter;
         public double DistanceBetweenObstacles;
         public float ObstacleRemoveXPosition;
         public Vector3 BridStartPosition;
@@ -20,8 +20,11 @@ namespace Flappy
         public float YPositionRandomizeDownRange;
         public int AddBombScore;
         public int MaxNumberOfBombs;
+        public float _bgYPosition;
         
         public List<FlappyStageConfig> FlappyStageConfigs;
+
+
         [Serializable]
         public class FlappyStageConfig
         {

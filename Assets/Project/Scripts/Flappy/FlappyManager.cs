@@ -19,6 +19,8 @@ public class FlappyManager : MonoBehaviour
     private Queue<FlappyTiledObjectBehaviour> _flappyBgs = new Queue<FlappyTiledObjectBehaviour>();
     private float? _speed;
     private float Speed => _speed ??= FlappyGameplayConfig.WorldMovementSpeed;
+    private float? _bGYPosition;
+    private float  BGYPosition => _bGYPosition ??= FlappyGameplayConfig._bgYPosition;
     private double ObstacleRemoveXPosition => FlappyGameplayConfig.ObstacleRemoveXPosition;
     private double DistanceBetweenObstacles => FlappyGameplayConfig.DistanceBetweenObstacles;
     
@@ -52,7 +54,7 @@ public class FlappyManager : MonoBehaviour
 
     private void UpdateBackgroundsTiles()
     {
-        _flappyBgs.ForEach(bg => bg.transform.Translate(new Vector3(Speed * Time.deltaTime,0,0)));
+        _flappyBgs.ForEach(bg => bg.transform.Translate(new Vector3(Speed * Time.deltaTime * -1,0,0)));
         var firstBg = _flappyBgs.Peek();
         
         var OutOfCameraViewPosition = firstBg.GetObjectWidth() * -1;
@@ -74,14 +76,15 @@ public class FlappyManager : MonoBehaviour
 
     private void UpdateObstacles()
     {
-        var translationDistance = Speed * Time.deltaTime;
-        _lastSpawnedObstacleTraveledDistance += translationDistance;
+        var translation = Speed * Time.deltaTime * -1;
+        _lastSpawnedObstacleTraveledDistance += Mathf.Abs(translation);
         if (_lastSpawnedObstacleTraveledDistance > DistanceBetweenObstacles)
         {
+            _lastSpawnedObstacleTraveledDistance = 0;
             SpawnNewObstacle();
         }
         
-        _flappyObstacles.ForEach(obstacle => obstacle.transform.Translate(translationDistance * -1,0,0));
+        _flappyObstacles.ForEach(obstacle => obstacle.transform.Translate(translation,0,0));
         if (_flappyObstacles.Count <= 0)
         {
             return;
@@ -100,6 +103,7 @@ public class FlappyManager : MonoBehaviour
         {
             obj.Setup();
             _flappyObstacles.Enqueue(obj);
+            return;
         }
             
         Log.Error("FlappyObstacleBehaviour failed to spawn");
@@ -120,7 +124,7 @@ public class FlappyManager : MonoBehaviour
                 continue;
             }
             
-            obstacle.transform.position = i == 0 ?  Vector3.zero : new Vector3(obstacle.GetObjectWidth() * i,0,0);
+            obstacle.transform.position = i == 0 ?  new Vector3(0,BGYPosition,0) : new Vector3(obstacle.GetObjectWidth() * i,BGYPosition,0);
             _flappyBgs.Enqueue(obstacle);
         }
     }
@@ -130,8 +134,9 @@ public class FlappyManager : MonoBehaviour
         _flappyObstacles.ForEach(obstacle => obstacle.Remove());
         _flappyObstacles.Clear();
         
-        var firstObstacleSpawnDistance = FlappyGameplayConfig.FirstObstacleSpawnDistance;
-        var spawnPosition = new Vector3(firstObstacleSpawnDistance, 0, 0);
+        var firstObstacleSpawnDistance = FlappyGameplayConfig.ObstacleSpawnDistanceFromCenter;
+        var randomizeObstacleYHeight = FlappyGameplayConfig.RandomizeYPositionForObstacle();
+        var spawnPosition = new Vector3(firstObstacleSpawnDistance, randomizeObstacleYHeight, 0);
 
         var obstacle = GameMaster.PoolManager.SpawnObject(FlappyPrefabType.Obstacle) as FlappyObstacleBehaviour;
         if (obstacle == null)

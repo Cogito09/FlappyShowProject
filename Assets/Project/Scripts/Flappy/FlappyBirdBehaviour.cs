@@ -7,15 +7,18 @@ public class FlappyBirdBehaviour : MonoBehaviour
 {
     private FlappyGameplayConfig _flappyGameplayConfig;
     private FlappyGameplayConfig FlappyGameplayConfig => _flappyGameplayConfig ??= MainConfig.FlappyGameplayConfig;
-    private Vector3 BirdStartPosition => FlappyGameplayConfig.BridStartPosition;
     [SerializeField] private string StopAnimatonTrigger;
     [SerializeField] private string StartAnimatonTrigger;
-    [SerializeField] private float _gravitySpeed;
-    [SerializeField] private float _forceMultiplier; 
-    [SerializeField] private AnimationCurve _bumpCurve;
+    [SerializeField] private float _gravityForce;
+    [SerializeField] private float _jumpForceMultiplier; 
+    [SerializeField] private float _jumpCurveDuration;
+    [SerializeField] private AnimationCurve _jumpCurve;
     [SerializeField] private Animator _animator;
+    private Vector3 BirdStartPosition => FlappyGameplayConfig.BridStartPosition;
+    private float GravityForce => _gravityForce * Time.deltaTime * -1;
     private float _lastBumpTimestamp;
     private Vector3 _lastPosition;
+
 
     private void Awake()
     {
@@ -53,15 +56,17 @@ public class FlappyBirdBehaviour : MonoBehaviour
 
     private void PreformMovement()
     {
-        var bumpTime = Time.time - _lastBumpTimestamp;
-        var force =  _bumpCurve.Evaluate(bumpTime) * _forceMultiplier;
+        var timePassedSinceTap = Time.time - _lastBumpTimestamp;;
 
-        transform.position = new Vector3(transform.position.x, transform.position.y + force, transform.position.z);
+        var bumpTime = timePassedSinceTap / _jumpCurveDuration;
+        var upForce =  _jumpCurve.Evaluate(bumpTime) * _jumpForceMultiplier;
+
+        transform.Translate(0, upForce, 0);
     }
 
     private void SimulateGravity()
     {
-        transform.position = new Vector3(transform.localPosition.x, transform.position.y - _gravitySpeed, transform.position.z); 
+        transform.Translate(0,GravityForce,0);
     }
     
     private void Bump()

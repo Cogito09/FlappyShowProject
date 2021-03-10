@@ -11,7 +11,7 @@ public class FlappyTiledObjectBehaviour : PoolObject
     [SerializeField] private SpriteRenderer _sprite;
     public float GetObjectWidth()
     {
-        return _sprite.size.x;
+        return _sprite.sprite.bounds.size.x;
     }
     
     protected override void StartRemovalAnimation() { }

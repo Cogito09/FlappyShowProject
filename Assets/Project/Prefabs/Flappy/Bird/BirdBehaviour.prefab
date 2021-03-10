@@ -68,8 +68,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 395259625
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -5064401156898091283, guid: 505159803495353418eb80e7aecdc8a0,
     type: 3}
@@ -151,8 +151,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 395259625
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -7518524041257459519, guid: 505159803495353418eb80e7aecdc8a0,
     type: 3}
@@ -234,8 +234,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 395259625
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -6583155732020471796, guid: 505159803495353418eb80e7aecdc8a0,
     type: 3}
@@ -260,6 +260,7 @@ GameObject:
   - component: {fileID: 5679737657223189021}
   - component: {fileID: 5679737657223189020}
   - component: {fileID: 1357935983}
+  - component: {fileID: 1357935982}
   m_Layer: 0
   m_Name: BirdBehaviour
   m_TagString: Untagged
@@ -298,37 +299,56 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StopAnimatonTrigger: Freeze
   StartAnimatonTrigger: Fly
-  _gravitySpeed: 9
-  _forceMultiplier: 2
-  _bumpCurve:
+  _gravityForce: 6
+  _jumpForceMultiplier: 0.15
+  _jumpCurveDuration: 0.5
+  _jumpCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 5.876769
-      outSlope: 5.876769
+      time: 0.000001705368
+      value: 0.0042367396
+      inSlope: 18.558683
+      outSlope: 18.558683
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.013990235
+      outWeight: 0.016271196
     - serializedVersion: 3
-      time: 0.47615883
-      value: 0.519755
-      inSlope: -2.711214
-      outSlope: -2.711214
+      time: 0.09814847
+      value: 1.0366089
+      inSlope: 0.8622326
+      outSlope: 0.8622326
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.16273452
+      outWeight: 0.32435068
+    - serializedVersion: 3
+      time: 0.26321632
+      value: 0.7291071
+      inSlope: -3.2351413
+      outSlope: -3.2351413
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 0.33333334
+      outWeight: 0.19407946
     - serializedVersion: 3
-      time: 0.9914551
-      value: 0
-      inSlope: -0.12890689
-      outSlope: -0.12890689
+      time: 0.34959656
+      value: 0.4951418
+      inSlope: -2.4403644
+      outSlope: -2.4403644
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.12840286
+      inWeight: 0.33333334
+      outWeight: 0.02728179
+    - serializedVersion: 3
+      time: 1.0012207
+      value: 0.0012052143
+      inSlope: -0.1366269
+      outSlope: -0.1366269
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.04638869
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -353,3 +373,29 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!61 &1357935982
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5679737657223189023}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 0.4}
+  m_EdgeRadius: 0
