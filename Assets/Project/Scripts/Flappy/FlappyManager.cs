@@ -21,9 +21,7 @@ public class FlappyManager : MonoBehaviour
     private float Speed => _speed ??= FlappyGameplayConfig.WorldMovementSpeed;
     private double ObstacleRemoveXPosition => FlappyGameplayConfig.ObstacleRemoveXPosition;
     private double DistanceBetweenObstacles => FlappyGameplayConfig.DistanceBetweenObstacles;
-
-
-
+    
     private float _lastSpawnedObstacleTraveledDistance;
     
     private void Awake()
@@ -162,7 +160,7 @@ public class FlappyManager : MonoBehaviour
         IsPlaying = false;
     }
 
-    public void EndRound()
+    private void EndRound()
     {
         Log.Info("Round Ended");
         IsPlaying = false;

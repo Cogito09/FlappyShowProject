@@ -11,7 +11,8 @@ namespace Flappy
         public List<FlappyPrefabTemplate> Templates;
         protected override List<IBasePrefabTemplate> GetTemplates()
         {
-            return new List<IBasePrefabTemplate>(Templates);
+            var list = new List<IBasePrefabTemplate>(Templates);
+            return list;
         }
     }
     
