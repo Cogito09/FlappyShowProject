@@ -11,5 +11,6 @@ namespace Flappy
         public static Action OnStageChanged;
         public static Action OnScoreChanged;
         public static Action OnBombsQuantityChanged;
+        public static Action OnBombUsed;
     }
 }

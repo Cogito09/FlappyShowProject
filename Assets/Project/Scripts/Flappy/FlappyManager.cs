@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Cngine;
+using Cngine.PopupSystem;
 using Flappy;
 using Sirenix.Utilities;
 using UnityEngine;
@@ -30,17 +31,22 @@ public class FlappyManager : MonoBehaviour
     {
         _instance = this;
         EventManager.OnFlappyRoundStarted += StartRound;
-        EventManager.OnFlappyRoundFinished += EndRound;
+        EventManager.OnFlappyRoundFinished += FinishRound;
         EventManager.OnFlappyRoundReseted += OnReset;
+        EventManager.OnFlappyObstacleHit += OnObstacleHit;
+        EventManager.OnBombUsed += OnBombUsed;
     }
 
     private void OnDestroy()
     { 
         EventManager.OnFlappyRoundStarted -= StartRound;
-        EventManager.OnFlappyRoundFinished -= EndRound;
+        EventManager.OnFlappyRoundFinished -= FinishRound;
         EventManager.OnFlappyRoundReseted -= OnReset;
+        EventManager.OnFlappyObstacleHit -= OnObstacleHit;
+        EventManager.OnBombUsed -= OnBombUsed;
     }
     
+
     private void Update()
     {
         if (IsPlaying == false)
@@ -51,6 +57,22 @@ public class FlappyManager : MonoBehaviour
         UpdateObstacles();
         UpdateBackgroundsTiles();
     }
+
+    private void OnBombUsed()
+    {
+        while (_flappyObstacles?.Count > 0 && IsInViewRange(_flappyObstacles.Peek().transform.position))
+        {
+            _flappyObstacles.Dequeue().Remove();
+        }
+    }
+
+    private bool IsInViewRange(Vector3 transformPosition)
+    {
+       return transformPosition.x > SightDistance;
+    }
+
+    private double? _sightDistance;
+    public double SightDistance => _sightDistance ??= FlappyGameplayConfig.SightDistance;
 
     private void UpdateBackgroundsTiles()
     {
@@ -111,7 +133,7 @@ public class FlappyManager : MonoBehaviour
 
     private void ResetTiles()
     {
-        _flappyBgs.ForEach(tile => tile.Remove());
+        _flappyBgs.ForEach(tile => tile.Remove(true));
         _flappyBgs.Clear();
         
         var numberOfTilesToSpawn = FlappyGameplayConfig.TotalNumberOfVisibleTiles;
@@ -131,12 +153,9 @@ public class FlappyManager : MonoBehaviour
     
     private void ResetObstacles()
     {
-        _flappyObstacles.ForEach(obstacle => obstacle.Remove());
+        _flappyObstacles.ForEach(obstacle => obstacle.Remove(true));
         _flappyObstacles.Clear();
         
-        var firstObstacleSpawnDistance = FlappyGameplayConfig.ObstacleSpawnDistanceFromCenter;
-        var randomizeObstacleYHeight = FlappyGameplayConfig.RandomizeYPositionForObstacle();
-        var spawnPosition = new Vector3(firstObstacleSpawnDistance, randomizeObstacleYHeight, 0);
 
         var obstacle = GameMaster.PoolManager.SpawnObject(FlappyPrefabType.Obstacle) as FlappyObstacleBehaviour;
         if (obstacle == null)
@@ -145,11 +164,16 @@ public class FlappyManager : MonoBehaviour
             return;
         }
         
-        obstacle.transform.position = spawnPosition;
         _flappyObstacles.Enqueue(obstacle);
-        
+        obstacle.Setup(true);
+
         _lastSpawnedObstacleTraveledDistance = 0;
     }
+    
+    private void OnObstacleHit()
+    {
+        EventManager.OnFlappyRoundFinished?.Invoke();
+    }   
 
     private void StartRound()
     {       
@@ -165,9 +189,10 @@ public class FlappyManager : MonoBehaviour
         IsPlaying = false;
     }
 
-    private void EndRound()
+    private void FinishRound()
     {
         Log.Info("Round Ended");
         IsPlaying = false;
+        GameMaster.PopupManager.Show(FlappyPopupType.ScorePopup);
     }
 }

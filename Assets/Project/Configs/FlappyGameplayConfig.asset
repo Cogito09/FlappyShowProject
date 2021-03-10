@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2f29048c0584d5089e6da24f789a142, type: 3}
   m_Name: FlappyGameplayConfig
   m_EditorClassIdentifier: 
-  WorldMovementSpeed: 3
+  WorldMovementSpeed: 2.75
   MapEdgePosition: -6
   TotalNumberOfVisibleTiles: 3
   ObstacleSpawnDistanceFromCenter: 4
+  FirstObstacleSpawnPositionX: 3.75
   DistanceBetweenObstacles: 4.25
   ObstacleRemoveXPosition: -6
   BridStartPosition: {x: 0, y: 3, z: 0}
@@ -24,8 +25,10 @@ MonoBehaviour:
   AddBombScore: 10
   MaxNumberOfBombs: 3
   _bgYPosition: 1.75
+  BombUseDoubleClickInterval: 0.08
+  SightDistance: 3.5
   FlappyStageConfigs:
-  - Id: 0
+  - Id: 1
     MinScoreRangeInclusive: 0
     MaxScoreRangeExclusive: 4
     IsMaxScore: 0
@@ -59,7 +62,7 @@ MonoBehaviour:
       m_Mode: 0
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
-  - Id: 0
+  - Id: 2
     MinScoreRangeInclusive: 4
     MaxScoreRangeExclusive: 8
     IsMaxScore: 0
@@ -93,7 +96,7 @@ MonoBehaviour:
       m_Mode: 0
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
-  - Id: 0
+  - Id: 3
     MinScoreRangeInclusive: 8
     MaxScoreRangeExclusive: 12
     IsMaxScore: 0
@@ -127,7 +130,7 @@ MonoBehaviour:
       m_Mode: 0
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
-  - Id: 0
+  - Id: 4
     MinScoreRangeInclusive: 12
     MaxScoreRangeExclusive: 16
     IsMaxScore: 0
@@ -161,7 +164,7 @@ MonoBehaviour:
       m_Mode: 0
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
-  - Id: 0
+  - Id: 5
     MinScoreRangeInclusive: 16
     MaxScoreRangeExclusive: 20
     IsMaxScore: 0
@@ -195,7 +198,7 @@ MonoBehaviour:
       m_Mode: 0
       m_NumColorKeys: 3
       m_NumAlphaKeys: 2
-  - Id: 0
+  - Id: 6
     MinScoreRangeInclusive: 24
     MaxScoreRangeExclusive: 30
     IsMaxScore: 1

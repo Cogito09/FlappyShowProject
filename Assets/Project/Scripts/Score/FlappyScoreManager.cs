@@ -13,8 +13,8 @@ namespace Flappy
         private FlappyGameplayConfig.FlappyStageConfig _currentStageConfig;
         private int? _maxNumberOfBombs;
         private int MaxNumberOfBombs => _maxNumberOfBombs ??= FlappyGameplayConfig.MaxNumberOfBombs;
+        public bool IsAbleToUseBomb => CurrentScoreData.NumberOfBombs > 0;
 
-        
         public void IncrementScore()
         {
             IncrementBombCounter();
@@ -47,7 +47,13 @@ namespace Flappy
                 EventManager.OnBombsQuantityChanged?.Invoke();
             }
         }
-
+        
+        private void OnBombUsed()
+        {
+            CurrentScoreData.NumberOfBombs--;
+            EventManager.OnBombsQuantityChanged?.Invoke();
+        }
+        
         private void OnStageChanged()
         {
             _currentStageConfig = null;
@@ -76,18 +82,17 @@ namespace Flappy
             EventManager.OnFlappyRoundStarted += OnFlappyRoundStarted;
             EventManager.OnFlappyRoundFinished += OnFlappyRoundFinished;
             EventManager.OnFlappyRoundReseted += OnFlappyRoundReseted;
+            EventManager.OnBombUsed += OnBombUsed;
             EventManager.OnStageChanged += OnStageChanged;
         }
-
-
+        
         ~FlappyScoreManager()
         {
             EventManager.OnFlappyRoundStarted -= OnFlappyRoundStarted;
             EventManager.OnFlappyRoundFinished -= OnFlappyRoundFinished;
             EventManager.OnFlappyRoundReseted -= OnFlappyRoundReseted;
             EventManager.OnStageChanged -= OnStageChanged;
+            EventManager.OnBombUsed -= OnBombUsed;
         }
-        
-        
     }
 }

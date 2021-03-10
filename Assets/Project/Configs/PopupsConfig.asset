@@ -18,6 +18,6 @@ MonoBehaviour:
       type: 3}
     IsStaticPanel: 0
   - PopupType: 2
-    Prefab: {fileID: 1056203663062429179, guid: a98a30bf1e928134a884157a92c24d8b,
+    Prefab: {fileID: -3223562080377665304, guid: a98a30bf1e928134a884157a92c24d8b,
       type: 3}
     IsStaticPanel: 0

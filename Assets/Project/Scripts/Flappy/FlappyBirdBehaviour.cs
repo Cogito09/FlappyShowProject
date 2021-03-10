@@ -14,17 +14,23 @@ public class FlappyBirdBehaviour : MonoBehaviour
     [SerializeField] private float _jumpCurveDuration;
     [SerializeField] private AnimationCurve _jumpCurve;
     [SerializeField] private Animator _animator;
+    [SerializeField] private GameObject _bombUseAnimation;
     private Vector3 BirdStartPosition => FlappyGameplayConfig.BridStartPosition;
+    private double BombUseDoubleClickInterval => _bombUseDoubleClickInterval ??= FlappyGameplayConfig.BombUseDoubleClickInterval;
+    private double? _bombUseDoubleClickInterval;
+    private bool IsAbleToUseBomb => GameMaster.FlappyScoreManager.IsAbleToUseBomb;
+
     private float GravityForce => _gravityForce * Time.deltaTime * -1;
     private float _lastBumpTimestamp;
     private Vector3 _lastPosition;
 
 
+
     private void Awake()
     {
         EventManager.OnFlappyRoundReseted += Reset;
-        EventManager.OnFlappyRoundStarted -= StartAnimation;
-        EventManager.OnFlappyRoundFinished -= StopAnimation;
+        EventManager.OnFlappyRoundStarted += StartAnimation;
+        EventManager.OnFlappyRoundFinished += StopAnimation;
     }
     
     private void OnDestroy()
@@ -56,7 +62,7 @@ public class FlappyBirdBehaviour : MonoBehaviour
 
     private void PreformMovement()
     {
-        var timePassedSinceTap = Time.time - _lastBumpTimestamp;;
+        var timePassedSinceTap = Time.time - _lastBumpTimestamp;
 
         var bumpTime = timePassedSinceTap / _jumpCurveDuration;
         var upForce =  _jumpCurve.Evaluate(bumpTime) * _jumpForceMultiplier;
@@ -71,12 +77,24 @@ public class FlappyBirdBehaviour : MonoBehaviour
     
     private void Bump()
     {
+        if (_lastBumpTimestamp < BombUseDoubleClickInterval && IsAbleToUseBomb)
+        {
+            LaunchBombUseAnimation();
+            EventManager.OnBombUsed?.Invoke();
+        }
+        
         _lastBumpTimestamp = Time.time;
+    }
+
+    private void LaunchBombUseAnimation()
+    {
+        _bombUseAnimation.Deactivate();
+        _bombUseAnimation.Activate();
     }
 
     public void Reset()
     {
-        _animator.StopPlayback();
+        StopAnimation();
         transform.position = BirdStartPosition;
         _lastPosition = Vector3.zero;
     }

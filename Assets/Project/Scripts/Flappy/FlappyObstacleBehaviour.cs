@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class FlappyObstacleBehaviour : PoolObject
 {
+    [SerializeField] private ScoreRegistererBehaviour _scoreRegistererBehaviour;
     [SerializeField] private SpriteRenderer _upperSprite;
     [SerializeField] private SpriteRenderer _downSprite;
     
@@ -11,34 +12,50 @@ public class FlappyObstacleBehaviour : PoolObject
     private FlappyGameplayConfig FlappyGameplayConfig => _flappyGameplayConfig ??= MainConfig.FlappyGameplayConfig;
     private FlappyObstaclesConfig.ObstacleConfig _obstacleConfig;
     private FlappyObstaclesConfig.ObstacleConfig ObstacleConfig => _obstacleConfig ??= FlappyGameplayConfig.GetObstacleTypeByScore(GameMaster.FlappyScoreManager.CurrentScoreData);
+    
+    public Sprite Sprite;
+    public Color Color;
 
-    public void Setup()
+    private void OnEnable()
+    {
+        
+    }
+
+    private void OnDisable()
+    {
+        
+    }
+    
+    public void Setup(bool isInitialObstacle = false)
     {
         SetupSprites();
-        SetupPosition();
+        SetupPosition(isInitialObstacle);
+        _scoreRegistererBehaviour.OnSpawned();
     }
 
-    private void SetupPosition()
+    private void SetupPosition(bool isInitialObstacle)
     {
         var yPositionRange = FlappyGameplayConfig.RandomizeYPositionForObstacle();
-        var xPosition = FlappyGameplayConfig.ObstacleSpawnDistanceFromCenter;
+        var xPosition = isInitialObstacle == false ? FlappyGameplayConfig.ObstacleSpawnDistanceFromCenter : FlappyGameplayConfig.FirstObstacleSpawnPositionX;
         transform.position = new Vector3(xPosition, yPositionRange, transform.position.z);
     }
-
+    
     private void SetupSprites()
     {
-        var sprite = ObstacleConfig.Sprite;
-        var color = ObstacleConfig.RandomizeColor();
+        Sprite = ObstacleConfig.Sprite;
+        Color = ObstacleConfig.RandomizeColor();
         
-        _upperSprite.sprite = sprite;
-        _upperSprite.color = color;
+        _upperSprite.sprite = Sprite;
+        _upperSprite.color = Color;
         
-        _downSprite.sprite = sprite;
-        _downSprite.color = color;
+        _downSprite.sprite = Sprite;
+        _downSprite.color = Color;
     }
+    
     protected override void StartRemovalAnimation()
     {
-        var obj = GameMaster.PoolManager.SpawnObject(FlappyPrefabType.ObstacleRemovalAnimation);
+        var obj = GameMaster.PoolManager.SpawnObject(FlappyPrefabType.ObstacleRemovalAnimation) as ObstacleRemovalObject;
+        obj.Setup(Color,Sprite);
         obj.transform.position = transform.position;
     }
 

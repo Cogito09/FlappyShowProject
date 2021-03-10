@@ -13,6 +13,7 @@ namespace Flappy
         public float MapEdgePosition;
         public int TotalNumberOfVisibleTiles;
         public float ObstacleSpawnDistanceFromCenter;
+        public float FirstObstacleSpawnPositionX;
         public double DistanceBetweenObstacles;
         public float ObstacleRemoveXPosition;
         public Vector3 BridStartPosition;
@@ -21,7 +22,8 @@ namespace Flappy
         public int AddBombScore;
         public int MaxNumberOfBombs;
         public float _bgYPosition;
-        
+        public double BombUseDoubleClickInterval;
+        public double SightDistance;
         public List<FlappyStageConfig> FlappyStageConfigs;
 
 
@@ -48,6 +50,8 @@ namespace Flappy
                     (scoreValue >= MinScoreRangeInclusive && scoreValue < MaxScoreRangeExclusive);
             }
         }
+
+
 
 
         public FlappyObstaclesConfig.ObstacleConfig GetObstacleTypeByScore(ScoreData currentScoreData)

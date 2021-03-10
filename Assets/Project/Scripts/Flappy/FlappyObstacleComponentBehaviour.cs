@@ -7,10 +7,12 @@ namespace CosmosQuest
     {
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.gameObject.CompareTag("Bird"))
+            if (other.gameObject.CompareTag("Bird") == false)
             {
-                EventManager.OnFlappyObstacleHit?.Invoke();
+                return;
             }
+            
+            EventManager.OnFlappyObstacleHit?.Invoke();
         }
     }
 }
