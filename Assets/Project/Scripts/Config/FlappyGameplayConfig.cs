@@ -26,6 +26,7 @@ namespace Flappy
         public float _bgYPosition;
         public double BombUseDoubleClickInterval;
         public double SightDistance;
+        public int MaxNumberOfStoredScoreSaves;
         public List<FlappyStageConfig> FlappyStageConfigs;
 
         [Serializable]
@@ -39,9 +40,9 @@ namespace Flappy
             [Obstacle] public int ObstacleType;
             public Gradient ColorRandomizeRange;
 
-            public bool IsWithInScoreRange(ScoreData currentScoreData)
+            public bool IsWithInScoreRange(FlappyScoreData currentFlappyScore)
             {
-                var scoreValue = currentScoreData.Score;
+                var scoreValue = currentFlappyScore.Score;
                 if (IsMaxScore)
                 {
                     return scoreValue >= MinScoreRangeInclusive;
@@ -65,9 +66,9 @@ namespace Flappy
             }
         }
         
-        public FlappyObstaclesConfig.ObstacleConfig GetObstacleTypeByScore(ScoreData currentScoreData)
+        public FlappyObstaclesConfig.ObstacleConfig GetObstacleTypeByScore(FlappyScoreData currentFlappyScoreData)
         {
-            var cfg = FlappyStageConfigs.Find(config => config.IsWithInScoreRange(currentScoreData));
+            var cfg = FlappyStageConfigs.Find(config => config.IsWithInScoreRange(currentFlappyScoreData));
             if (cfg == null)
             {
                 Log.Error("nie znajduje ostatniego configa");

@@ -40,12 +40,12 @@ namespace Flappy
         
         private void UpdateScore()
         {
-            _score.text = GameMaster.FlappyScoreManager?.CurrentScoreData.Score.ToString();
+            _score.text = GameMaster.FlappyScoreManager?.CurrentFlappyScore.Score.ToString();
         }
         
         public void OnBombQuantityChanged()
         {
-            _bombs.text = GameMaster.FlappyScoreManager?.CurrentScoreData.NumberOfBombs.ToString();
+            _bombs.text = GameMaster.FlappyScoreManager?.CurrentFlappyScore.NumberOfBombs.ToString();
         }
     }
 }

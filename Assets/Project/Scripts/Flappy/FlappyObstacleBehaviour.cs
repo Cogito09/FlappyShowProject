@@ -11,7 +11,7 @@ public class FlappyObstacleBehaviour : PoolObject
     private FlappyGameplayConfig _flappyGameplayConfig;
     private FlappyGameplayConfig FlappyGameplayConfig => _flappyGameplayConfig ??= MainConfig.FlappyGameplayConfig;
     private FlappyObstaclesConfig.ObstacleConfig _obstacleConfig;
-    private FlappyObstaclesConfig.ObstacleConfig ObstacleConfig => _obstacleConfig ??= FlappyGameplayConfig.GetObstacleTypeByScore(GameMaster.FlappyScoreManager.CurrentScoreData);
+    private FlappyObstaclesConfig.ObstacleConfig ObstacleConfig => _obstacleConfig ??= FlappyGameplayConfig.GetObstacleTypeByScore(GameMaster.FlappyScoreManager.CurrentFlappyScore);
     
     private Sprite Sprite;
     private Color Color;

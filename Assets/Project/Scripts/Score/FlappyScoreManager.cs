@@ -1,20 +1,31 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using Cngine;
+using Cngine.PopupSystem;
+using UnityEngine;
 
 namespace Flappy
 {
     public class FlappyScoreManager
     {
-        public ScoreData CurrentScoreData;
-        private int _bombCounter;
+        private List<FlappyScoreData> _bestScores;
+        public List<FlappyScoreData> BestScores => _bestScores ??= GameMaster.Save.BestScoresSave;
+        private void SaveScore()
+        {
+            GameMaster.Save.BestScoresSave = _bestScores;
+        }
         
-        public FlappyGameplayConfig.FlappyStageConfig CurrentStageConfig => _currentStageConfig ??= FlappyGameplayConfig.GetStageConfig(CurrentScoreData.CurrentStage);
+        public FlappyScoreData CurrentFlappyScore;
+        private int _bombCounter;
+
+        public bool IsCurrentScoreHighestScore => BestScores.Count <= 0 ? false : BestScores[0].Score == CurrentFlappyScore.Score;
+        public FlappyGameplayConfig.FlappyStageConfig CurrentStageConfig => _currentStageConfig ??= FlappyGameplayConfig.GetStageConfig(CurrentFlappyScore.CurrentStage);
         private FlappyGameplayConfig.FlappyStageConfig _currentStageConfig;
         private FlappyGameplayConfig _flappyGameplayConfig;
         private FlappyGameplayConfig FlappyGameplayConfig => _flappyGameplayConfig ??= MainConfig.FlappyGameplayConfig;
-
+        public int MaxNumberOfStoredSaves => MainConfig.FlappyGameplayConfig.MaxNumberOfStoredScoreSaves;
         private int? _maxNumberOfBombs;
         private int MaxNumberOfBombs => _maxNumberOfBombs ??= FlappyGameplayConfig.MaxNumberOfBombs;
-        public bool IsAbleToUseBomb => CurrentScoreData.NumberOfBombs > 0;
+        public bool IsAbleToUseBomb => CurrentFlappyScore.NumberOfBombs > 0;
 
         public void IncrementScore()
         {
@@ -24,10 +35,10 @@ namespace Flappy
 
         private void IncrementScoreCounter()
         {
-            CurrentScoreData.Score++;
-            if (CurrentStageConfig.IsWithInScoreRange(CurrentScoreData) == false)
+            CurrentFlappyScore.Score++;
+            if (CurrentStageConfig.IsWithInScoreRange(CurrentFlappyScore) == false)
             {
-                CurrentScoreData.CurrentStage++;
+                CurrentFlappyScore.CurrentStage++;
                 EventManager.OnStageChanged?.Invoke();
             }
 
@@ -36,7 +47,7 @@ namespace Flappy
 
         private void IncrementBombCounter()
         {
-            if (CurrentScoreData.NumberOfBombs >= MaxNumberOfBombs)
+            if (CurrentFlappyScore.NumberOfBombs >= MaxNumberOfBombs)
             {
                 return;
             }
@@ -45,14 +56,14 @@ namespace Flappy
             if (_bombCounter == FlappyGameplayConfig.AddBombScore)
             {
                 _bombCounter = 0;
-                CurrentScoreData.NumberOfBombs++;
+                CurrentFlappyScore.NumberOfBombs++;
                 EventManager.OnBombsQuantityChanged?.Invoke();
             }
         }
         
         private void OnBombUsed()
         {
-            CurrentScoreData.NumberOfBombs--;
+            CurrentFlappyScore.NumberOfBombs--;
             EventManager.OnBombsQuantityChanged?.Invoke();
         }
         
@@ -63,22 +74,47 @@ namespace Flappy
         
         private void OnFlappyRoundReseted()
         {
-            CurrentScoreData = new ScoreData();
-            CurrentScoreData.CurrentStage = 1;
+            CurrentFlappyScore = new FlappyScoreData();
+            CurrentFlappyScore.CurrentStage = 1;
             _bombCounter = 0;
             EventManager.OnStageChanged?.Invoke();
         }
 
         private void OnFlappyRoundFinished()
         {
+            ValidateScore();
+        }
+        
+        private void ValidateScore()
+        {
+            var currentScore = CurrentFlappyScore;
+            var scores = BestScores;
+            scores.Add(currentScore);
+            scores.Sort();
             
+            _bestScores = TrimScoreListToBest(scores);
+            SaveScore();
+            
+            GameMaster.PopupManager.Show(FlappyPopupType.ScorePopup);
+        }
+
+        private List<FlappyScoreData> TrimScoreListToBest(List<FlappyScoreData> scores)
+        {
+            if (scores.Count -1  > MaxNumberOfStoredSaves)
+            {
+                for (int i = scores.Count - 1; i >= MaxNumberOfStoredSaves; i--)
+                {
+                    scores.RemoveAt(i);
+                }
+            }
+
+            return scores;
         }
 
         private void OnFlappyRoundStarted()
         {
 
         }
-        
         
         public FlappyScoreManager()
         {
@@ -100,7 +136,7 @@ namespace Flappy
 
         public Color GetBackgroundColorOfCurrentScore()
         {
-            return CurrentStageConfig.GetBackgroundColorOfCurrentScore(CurrentScoreData.Score);
+            return CurrentStageConfig.GetBackgroundColorOfCurrentScore(CurrentFlappyScore.Score);
         }
     }
 }

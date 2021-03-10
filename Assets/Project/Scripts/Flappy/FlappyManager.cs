@@ -11,7 +11,7 @@ public class FlappyManager : MonoBehaviour
     private static FlappyManager _instance;
 
     public bool IsPlaying;
-    public ScoreData CurrentScoreData => GameMaster.FlappyScoreManager.CurrentScoreData;
+    public FlappyScoreData CurrentFlappyScore => GameMaster.FlappyScoreManager.CurrentFlappyScore;
 
     
     private FlappyGameplayConfig _flappyGameplayConfig;
@@ -210,6 +210,5 @@ public class FlappyManager : MonoBehaviour
     {
         Log.Info("Round Ended");
         IsPlaying = false;
-        GameMaster.PopupManager.Show(FlappyPopupType.ScorePopup);
     }
 }
