@@ -12,23 +12,19 @@ namespace Flappy
         private MainConfig _mainConfig;
         private PopupManager<FlappyPopupType> _popupManager = new PopupManager<FlappyPopupType>(100,50);
         private PoolManager<FlappyPrefabTemplate, FlappyPrefabsConfig> _poolManager;
-        private FlappyScoreManager _flappyScoreManager = new FlappyScoreManager();
         private FacebookManager _facebookManager = new FacebookManager();
-
+        private FlappyScoreManager _flappyScoreManager;
 
         public static MainConfig MainConfig => _instance._mainConfig ??= (MainConfig) GameMasterBase.BaseMainConfig;
         public static PoolManager<FlappyPrefabTemplate, FlappyPrefabsConfig> PoolManager => _instance._poolManager ??=  new PoolManager<FlappyPrefabTemplate, FlappyPrefabsConfig>(MainConfig.PrefabsConfig);
-        public static FlappyScoreManager FlappyScoreManager => _instance._flappyScoreManager;
+        public static FlappyScoreManager FlappyScoreManager => _instance._flappyScoreManager ??= new FlappyScoreManager();
         public static ScenesManager ScenesManager => _instance._sceneManager;
         public static PopupManager<FlappyPopupType> PopupManager => _instance._popupManager;
         public static FacebookManager FacebookManager => _instance._facebookManager;
         
-        private Save _save;
-        public static Save Save
-        {
-            get => _instance._save;
-            set => _instance._save = value;
-        }
+        private Save _save = new Save();
+        public static Save Save => _instance._save;
+
 
         public override string GetUserId()
         {

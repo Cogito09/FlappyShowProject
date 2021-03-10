@@ -7,14 +7,20 @@ namespace Flappy
 {
     public class FlappyScoreManager
     {
+
         private List<FlappyScoreData> _bestScores;
         public List<FlappyScoreData> BestScores => _bestScores ??= GameMaster.Save.BestScoresSave;
         private void SaveScore()
         {
             GameMaster.Save.BestScoresSave = _bestScores;
         }
-        
-        public FlappyScoreData CurrentFlappyScore;
+
+        private FlappyScoreData _flappyScoreData;
+        public FlappyScoreData CurrentFlappyScore
+        {
+            get  {return _flappyScoreData ??= new  FlappyScoreData();}
+            set => _flappyScoreData = value;
+        }
         private int _bombCounter;
 
         public bool IsCurrentScoreHighestScore => BestScores.Count <= 0 ? false : BestScores[0].Score == CurrentFlappyScore.Score;
@@ -31,8 +37,22 @@ namespace Flappy
         {
             IncrementBombCounter();
             IncrementScoreCounter();
+
+            Log.Info("Incrementd Score");
+            LogCurrentScore();
         }
 
+        private void LogCurrentScore()
+        {
+            if (CurrentFlappyScore == null)
+            {
+                return;
+            }
+            
+            Log.Info(
+                $"CurrentFlappyScore , Score: {CurrentFlappyScore.Score}, Bombs : {CurrentFlappyScore.NumberOfBombs},Stage {CurrentFlappyScore.CurrentStage}");
+        }
+        
         private void IncrementScoreCounter()
         {
             CurrentFlappyScore.Score++;
@@ -74,14 +94,19 @@ namespace Flappy
         
         private void OnFlappyRoundReseted()
         {
+            Log.Info("OnFlappy round Reseted , clearing score ");
+            LogCurrentScore();
             CurrentFlappyScore = new FlappyScoreData();
             CurrentFlappyScore.CurrentStage = 1;
             _bombCounter = 0;
+            
             EventManager.OnStageChanged?.Invoke();
         }
 
         private void OnFlappyRoundFinished()
         {
+            Log.Info("OnFlappy Finished");
+            LogCurrentScore();
             ValidateScore();
         }
         
@@ -113,11 +138,15 @@ namespace Flappy
 
         private void OnFlappyRoundStarted()
         {
-
+            Log.Info("On Flappy round started");
+            LogCurrentScore();
         }
-        
+
+        private static int numberOfManagers;
         public FlappyScoreManager()
         {
+            numberOfManagers++;
+            Log.Info($"FlappyScoreManager number : {numberOfManagers}");
             EventManager.OnFlappyRoundStarted += OnFlappyRoundStarted;
             EventManager.OnFlappyRoundFinished += OnFlappyRoundFinished;
             EventManager.OnFlappyRoundReseted += OnFlappyRoundReseted;

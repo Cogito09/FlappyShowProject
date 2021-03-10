@@ -54,14 +54,7 @@ namespace Flappy
 
             public Color GetBackgroundColorOfCurrentScore(int score)
             {
-                // if (score < MinScoreRangeInclusive || score >= MaxScoreRangeExclusive)
-                // {
-                //     Log.Error("Current stage is not within the socre");
-                //     EventManager.OnStageChanged?.Invoke();
-                // }
-
                 var stageScoreProgress = (float)(score - MinScoreRangeInclusive) / (MaxScoreRangeExclusive -MinScoreRangeInclusive);
-                Log.Info($"stageScoreProgress : {stageScoreProgress}");
                 return ColorRandomizeRange.Evaluate(stageScoreProgress);
             }
         }
@@ -71,7 +64,7 @@ namespace Flappy
             var cfg = FlappyStageConfigs.Find(config => config.IsWithInScoreRange(currentFlappyScoreData));
             if (cfg == null)
             {
-                Log.Error("nie znajduje ostatniego configa");
+                Log.Error("Cant find obstacle config");
                 return null;
             }
             

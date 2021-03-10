@@ -7,8 +7,7 @@ using UnityEngine;
 public class FlappyTiledBackgroundBehaviour : PoolObject
 {    
     private FlappyManager FlappyManager => FlappyManager.Instance;
-    private FlappyScoreManager _flappyScoreManager;
-    private FlappyScoreManager FlappyScoreManager => _flappyScoreManager ??= GameMaster.FlappyScoreManager;
+    private FlappyScoreManager FlappyScoreManager => GameMaster.FlappyScoreManager;
     private FlappyGameplayConfig _flappyGameplayConfig;
     private FlappyGameplayConfig FlappyGameplayConfig => _flappyGameplayConfig ??= MainConfig.FlappyGameplayConfig;
 

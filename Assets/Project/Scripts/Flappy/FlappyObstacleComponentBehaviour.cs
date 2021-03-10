@@ -11,8 +11,8 @@ namespace CosmosQuest
             {
                 return;
             }
-            
-            EventManager.OnFlappyObstacleHit?.Invoke();
+
+            FlappyManager.Instance.ObstacleHasBeenHit();
         }
     }
 }

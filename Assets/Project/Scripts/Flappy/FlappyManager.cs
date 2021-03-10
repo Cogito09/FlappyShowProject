@@ -11,9 +11,6 @@ public class FlappyManager : MonoBehaviour
     private static FlappyManager _instance;
 
     public bool IsPlaying;
-    public FlappyScoreData CurrentFlappyScore => GameMaster.FlappyScoreManager.CurrentFlappyScore;
-
-    
     private FlappyGameplayConfig _flappyGameplayConfig;
     private FlappyGameplayConfig FlappyGameplayConfig => _flappyGameplayConfig ??= MainConfig.FlappyGameplayConfig;
     private Queue<FlappyObstacleBehaviour> _flappyObstacles = new Queue<FlappyObstacleBehaviour>();
@@ -26,14 +23,16 @@ public class FlappyManager : MonoBehaviour
     private double DistanceBetweenObstacles => FlappyGameplayConfig.DistanceBetweenObstacles;
     
     private float _lastSpawnedObstacleTraveledDistance;
-    
+
+    private static int numberOfManagers;
     private void Awake()
     {
+        numberOfManagers++;
+        Log.Info($"numberOfManagers : {numberOfManagers}");
         _instance = this;
         EventManager.OnFlappyRoundStarted += StartRound;
         EventManager.OnFlappyRoundFinished += FinishRound;
         EventManager.OnFlappyRoundReseted += OnReset;
-        EventManager.OnFlappyObstacleHit += OnObstacleHit;
         EventManager.OnBombUsed += OnBombUsed;
     }
 
@@ -42,7 +41,6 @@ public class FlappyManager : MonoBehaviour
         EventManager.OnFlappyRoundStarted -= StartRound;
         EventManager.OnFlappyRoundFinished -= FinishRound;
         EventManager.OnFlappyRoundReseted -= OnReset;
-        EventManager.OnFlappyObstacleHit -= OnObstacleHit;
         EventManager.OnBombUsed -= OnBombUsed;
     }
     
@@ -187,11 +185,6 @@ public class FlappyManager : MonoBehaviour
         _lastSpawnedObstacleTraveledDistance = 0;
     }
     
-    private void OnObstacleHit()
-    {
-        EventManager.OnFlappyRoundFinished?.Invoke();
-    }   
-
     private void StartRound()
     {       
         Log.Info("Round Started");
@@ -210,5 +203,18 @@ public class FlappyManager : MonoBehaviour
     {
         Log.Info("Round Ended");
         IsPlaying = false;
+    }
+
+    public void ObstacleHasBeenHit()
+    {
+        if (IsPlaying == false)
+        {
+            Log.Info("Tried to finish game but game is not Playing");
+            return;
+        }
+
+        IsPlaying = false;
+        Log.Info("Obstacle hit, launching finished event");
+        EventManager.OnFlappyRoundFinished?.Invoke();
     }
 }

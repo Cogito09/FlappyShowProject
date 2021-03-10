@@ -3,7 +3,7 @@
 namespace Flappy
 {
     [Serializable]
-    public struct FlappyScoreData : IComparable<FlappyScoreData>
+    public class FlappyScoreData : IComparable<FlappyScoreData>
     {        
         public int Score;
         public int CurrentStage;

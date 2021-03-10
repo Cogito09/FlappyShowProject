@@ -3,7 +3,7 @@ using Cngine;
 
 namespace Flappy
 {
-    public class Save : DataObject<SaveData>
+    public class Save
     {
         public List<FlappyScoreData> _bestScoresSave;
         public List<FlappyScoreData> BestScoresSave
@@ -19,12 +19,12 @@ namespace Flappy
                 _bestScoresSave = JsonSerializer.Deserialize<List<FlappyScoreData>>(data);
                 return _bestScoresSave;
             }
-            
-            set => DataStore.Save("BestScore",JsonSerializer.Serialize(_bestScoresSave)) ;
-        }
-        
-        protected Save(SaveData model, bool dontWarnAboutMissingData = false) : base(model, dontWarnAboutMissingData)
-        {
+
+            set
+            {
+                DataStore.Save("BestScore", JsonSerializer.Serialize(_bestScoresSave));
+                _bestScoresSave = null;
+            }
         }
     }
 }
