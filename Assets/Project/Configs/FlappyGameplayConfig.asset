@@ -199,7 +199,7 @@ MonoBehaviour:
       m_NumColorKeys: 3
       m_NumAlphaKeys: 2
   - Id: 6
-    MinScoreRangeInclusive: 24
+    MinScoreRangeInclusive: 20
     MaxScoreRangeExclusive: 30
     IsMaxScore: 1
     ObstacleType: 3

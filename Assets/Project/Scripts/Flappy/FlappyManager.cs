@@ -76,7 +76,7 @@ public class FlappyManager : MonoBehaviour
             if (IsInViewRange(obstacle.transform.position))
             {
                 _flappyObstacles.Dequeue().Remove();
-                return;
+                continue;
             }
             
             break;
@@ -85,7 +85,7 @@ public class FlappyManager : MonoBehaviour
 
     private bool IsInViewRange(Vector3 transformPosition)
     {
-       return transformPosition.x > SightDistance;
+       return transformPosition.x < SightDistance;
     }
 
     private double? _sightDistance;

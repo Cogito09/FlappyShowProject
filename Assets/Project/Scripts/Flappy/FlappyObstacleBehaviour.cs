@@ -46,7 +46,10 @@ public class FlappyObstacleBehaviour : PoolObject
     protected override void StartRemovalAnimation()
     {
         var obj = GameMaster.PoolManager.SpawnObject(FlappyPrefabType.ObstacleRemovalAnimation) as ObstacleRemovalObject;
-        obj.Setup(Color,Sprite);
+        obj.Setup(Color, Sprite,
+            _upperSprite.gameObject.transform.localPosition.y,
+            _downSprite.gameObject.transform.localPosition.y);
+        
         obj.transform.position = transform.position;
     }
 

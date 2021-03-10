@@ -68,6 +68,12 @@ namespace Flappy
         public FlappyObstaclesConfig.ObstacleConfig GetObstacleTypeByScore(ScoreData currentScoreData)
         {
             var cfg = FlappyStageConfigs.Find(config => config.IsWithInScoreRange(currentScoreData));
+            if (cfg == null)
+            {
+                Log.Error("nie znajduje ostatniego configa");
+                return null;
+            }
+            
             var obstacleCfg = MainConfig.FlappyObstaclesConfig.GetObstacleConfig(cfg.ObstacleType);
             return obstacleCfg;
         }
