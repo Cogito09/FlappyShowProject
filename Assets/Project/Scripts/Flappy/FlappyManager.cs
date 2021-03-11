@@ -212,9 +212,9 @@ public class FlappyManager : MonoBehaviour
             Log.Info("Tried to finish game but game is not Playing");
             return;
         }
-
+        
         IsPlaying = false;
-        Log.Info("Obstacle hit, launching finished event");
         EventManager.OnFlappyRoundFinished?.Invoke();
+        Log.Info("Obstacle hit, launching finished event");
     }
 }

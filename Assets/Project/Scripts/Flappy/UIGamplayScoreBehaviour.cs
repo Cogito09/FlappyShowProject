@@ -14,30 +14,34 @@ namespace Flappy
         {
             EventManager.OnScoreChanged += UpdateScore;
             EventManager.OnBombsQuantityChanged += OnBombQuantityChanged;
-            EventManager.OnFlappyRoundFinished += Setup;
-            EventManager.OnFlappyRoundStarted += Setup;
-            EventManager.OnFlappyRoundReseted += Setup;
-            Setup();
+            EventManager.OnFlappyRoundFinished += Hide;
+            EventManager.OnFlappyRoundStarted += Show;
+            EventManager.OnFlappyRoundReseted += Hide;
+            Hide();
         }
 
         private void OnDestroy()
         {
             EventManager.OnScoreChanged -= UpdateScore;
             EventManager.OnBombsQuantityChanged -= OnBombQuantityChanged;
-            EventManager.OnFlappyRoundFinished -= Setup;
-            EventManager.OnFlappyRoundStarted -= Setup;
-            EventManager.OnFlappyRoundReseted -= Setup;
+            EventManager.OnFlappyRoundFinished -= Hide;
+            EventManager.OnFlappyRoundStarted -= Show;
+            EventManager.OnFlappyRoundReseted -= Hide;
+        }
+
+        private void Show()
+        {
+            gameObject.ChangeActive(true);
+            Setup();
+        }
+
+        private void Hide()
+        {
+            gameObject.ChangeActive(false);
         }
         
         private void Setup()
         {
-            var showPanel = FlappyManager.Instance != null && FlappyManager.Instance.IsPlaying == false;
-            gameObject.ChangeActive(showPanel);
-            if (showPanel == false)
-            {
-                return;
-            }
-            
             UpdateScore();
             OnBombQuantityChanged();
         }
