@@ -89,7 +89,7 @@ namespace Flappy
         
         public void OnClickShareOnFb()
         {
-            GameMaster.FacebookManager.ShareScore(CurrentScore);
+            GameMaster.FacebookManager.ShareScore(CurrentScore.Score);
         }
     }
 }
