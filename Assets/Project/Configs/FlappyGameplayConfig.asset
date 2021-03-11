@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2f29048c0584d5089e6da24f789a142, type: 3}
   m_Name: FlappyGameplayConfig
   m_EditorClassIdentifier: 
-  WorldMovementSpeed: 2.75
+  WorldMovementSpeed: 2.35
   MapEdgePosition: -6
   TotalNumberOfVisibleTiles: 3
   ObstacleSpawnDistanceFromCenter: 4
@@ -22,7 +22,7 @@ MonoBehaviour:
   BridStartPosition: {x: 0, y: 3, z: 0}
   YPositionRandomizeUpperRange: 4
   YPositionRandomizeDownRange: -1.5
-  AddBombScore: 2
+  AddBombScore: 10
   MaxNumberOfBombs: 3
   _bgYPosition: 1.75
   BombUseDoubleClickInterval: 0.15

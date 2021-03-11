@@ -1230,7 +1230,7 @@ MonoBehaviour:
   StartAnimatonTrigger: Fly
   _gravityForce: 6
   _jumpForceMultiplier: 0.07
-  _jumpCurveDuration: 0.3
+  _jumpCurveDuration: 0.4
   _jumpCurve:
     serializedVersion: 2
     m_Curve:
@@ -1244,17 +1244,26 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0.052001335
     - serializedVersion: 3
-      time: 0.097281694
-      value: 0.9552798
-      inSlope: 1.5333565
-      outSlope: 1.5333565
+      time: 0.051456198
+      value: 0.9012665
+      inSlope: 5.208421
+      outSlope: 5.208421
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.28359374
-      outWeight: 0.14436968
+      outWeight: 0.32268563
     - serializedVersion: 3
-      time: 0.28675538
-      value: 0.8716406
+      time: 0.08930781
+      value: 1.0156898
+      inSlope: 1.3967834
+      outSlope: 1.3967834
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.20027345
+      value: 0.93611914
       inSlope: -2.3905299
       outSlope: -2.3905299
       tangentMode: 0

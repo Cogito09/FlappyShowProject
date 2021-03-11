@@ -12,6 +12,7 @@ namespace Flappy
         [SerializeField] private PoolConfig _flappyPoolConfig;
         [SerializeField] private FlappyGameplayConfig _flappyGameplayConfig;
         [SerializeField] private FlappyObstaclesConfig flappyObstaclesConfig;
+        [SerializeField] private FacebookConfig _facebookConfig;
         
         public static FlappyPrefabsConfig PrefabsConfig => Instance._prefabsConfig;
         public static PopupConfig PopupConfig => Instance.popupConfig;
@@ -19,7 +20,8 @@ namespace Flappy
         public static PoolConfig FlappyGameplayPoolConfig => Instance._flappyPoolConfig;
         public static FlappyGameplayConfig FlappyGameplayConfig => Instance._flappyGameplayConfig;
         public static FlappyObstaclesConfig FlappyObstaclesConfig => Instance.flappyObstaclesConfig;
-
+        public static FacebookConfig FacebookConfig => Instance._facebookConfig;
+        
         public override LoadingConfig GetLoadingConfig()
         {
             return LoadingConfig;
@@ -31,12 +33,15 @@ namespace Flappy
         }
         
         private static MainConfig _mainConfig;
+
+
         public static MainConfig Instance =>
 #if !UNITY_EDITOR
              _mainConfig ?? (_mainConfig = GameMaster.MainConfig);
 #endif
 #if UNITY_EDITOR
         _mainConfig ?? Application.isPlaying == false ? (_mainConfig = (MainConfig) GetConfigAsset()) : GameMaster.MainConfig;
+
 
 
 

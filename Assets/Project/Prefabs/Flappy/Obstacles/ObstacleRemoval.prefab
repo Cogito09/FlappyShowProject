@@ -149,7 +149,7 @@ MonoBehaviour:
   PlayOnStart: 0
   PlayOnEnable: 0
   Duration: 1
-  Speed: 4
+  Speed: 8
   Delay: 0
   Loop: 0
   LoopsNumber: 0
@@ -327,7 +327,7 @@ MonoBehaviour:
   PlayOnStart: 0
   PlayOnEnable: 0
   Duration: 1
-  Speed: 4
+  Speed: 8
   Delay: 0
   Loop: 0
   LoopsNumber: 0

@@ -1,0 +1,106 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: FlappyGameplayAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 1024
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 100
+      m_CrunchedCompression: 1
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 796780e2b1bad63459e71fc2cf8cf37c, type: 3}
+    totalSpriteSurfaceArea: 908424
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: -6583155732020471796, guid: 505159803495353418eb80e7aecdc8a0, type: 3}
+  - {fileID: -7518524041257459519, guid: 505159803495353418eb80e7aecdc8a0, type: 3}
+  - {fileID: -5064401156898091283, guid: 505159803495353418eb80e7aecdc8a0, type: 3}
+  - {fileID: -1205740810681323922, guid: c477f5b0f9af61a42a961bfd56461a14, type: 3}
+  - {fileID: -4415440932393464980, guid: c477f5b0f9af61a42a961bfd56461a14, type: 3}
+  - {fileID: -6210186659520421850, guid: c477f5b0f9af61a42a961bfd56461a14, type: 3}
+  - {fileID: -2807913808948371079, guid: c477f5b0f9af61a42a961bfd56461a14, type: 3}
+  - {fileID: -3098221142656904999, guid: c477f5b0f9af61a42a961bfd56461a14, type: 3}
+  - {fileID: 6085218192123517740, guid: c477f5b0f9af61a42a961bfd56461a14, type: 3}
+  - {fileID: -5362691222513635890, guid: c477f5b0f9af61a42a961bfd56461a14, type: 3}
+  - {fileID: -8860312699811430183, guid: c477f5b0f9af61a42a961bfd56461a14, type: 3}
+  - {fileID: -5443729655699382175, guid: c477f5b0f9af61a42a961bfd56461a14, type: 3}
+  - {fileID: 1037891125679955185, guid: c477f5b0f9af61a42a961bfd56461a14, type: 3}
+  - {fileID: 6965229494165062650, guid: c477f5b0f9af61a42a961bfd56461a14, type: 3}
+  - {fileID: 5108601841118324724, guid: c477f5b0f9af61a42a961bfd56461a14, type: 3}
+  - {fileID: 763718201113852716, guid: c477f5b0f9af61a42a961bfd56461a14, type: 3}
+  - {fileID: 3779983321907253453, guid: c477f5b0f9af61a42a961bfd56461a14, type: 3}
+  - {fileID: -966056320420023668, guid: c477f5b0f9af61a42a961bfd56461a14, type: 3}
+  - {fileID: 7488926447407996787, guid: c477f5b0f9af61a42a961bfd56461a14, type: 3}
+  - {fileID: 1824921886515328041, guid: c477f5b0f9af61a42a961bfd56461a14, type: 3}
+  - {fileID: 21300000, guid: 2550aca19e7e28545ab053f92966b580, type: 3}
+  - {fileID: 21300000, guid: 7dc696e106e694249aaecd751a4bb575, type: 3}
+  - {fileID: 21300000, guid: 0dc547c2c7fcb9d41855a4829e92ecd6, type: 3}
+  - {fileID: 21300000, guid: 24c2c428d2c4f6448a5cd8fe8a2678cd, type: 3}
+  - {fileID: 21300000, guid: 2b83ee590ca99874fbf557263d42bc8d, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - bird_2
+  - bird_1
+  - bird_0
+  - ezgif.com-gif-maker_11
+  - ezgif.com-gif-maker_10
+  - ezgif.com-gif-maker_13
+  - ezgif.com-gif-maker_12
+  - ezgif.com-gif-maker_15
+  - ezgif.com-gif-maker_14
+  - ezgif.com-gif-maker_16
+  - ezgif.com-gif-maker_8
+  - ezgif.com-gif-maker_9
+  - ezgif.com-gif-maker_2
+  - ezgif.com-gif-maker_3
+  - ezgif.com-gif-maker_0
+  - ezgif.com-gif-maker_1
+  - ezgif.com-gif-maker_6
+  - ezgif.com-gif-maker_7
+  - ezgif.com-gif-maker_4
+  - ezgif.com-gif-maker_5
+  - tube3
+  - bg (2)
+  - tube5
+  - tube4
+  - ground
+  m_RenderDataMap: {}
+  m_Tag: FlappyGameplayAtlas
+  m_IsVariant: 0

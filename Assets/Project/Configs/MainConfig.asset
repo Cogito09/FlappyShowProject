@@ -20,3 +20,4 @@ MonoBehaviour:
     type: 2}
   flappyObstaclesConfig: {fileID: 11400000, guid: f272d91f2b065484aa8f3e40b3102337,
     type: 2}
+  _facebookConfig: {fileID: 11400000, guid: 6ab6e2123c776ca48ae1dccaf1357ef8, type: 2}

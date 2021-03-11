@@ -8,7 +8,7 @@ namespace Flappy
     public class FacebookManager
     {
         public bool IsAbleToShareOnFB => IsInitialized();
-
+        public FacebookConfig FacebookConfig => MainConfig.FacebookConfig;
         
         
         public bool IsInitialized()
@@ -27,7 +27,6 @@ namespace Flappy
             if (FB.IsInitialized)
             {
                 FB.ActivateApp();
-                FbLogin(null);
                 return;
             }
             
@@ -40,7 +39,6 @@ namespace Flappy
                 }
                 
                 FB.ActivateApp();
-                FbLogin(null);
             });
         }
 
@@ -62,11 +60,11 @@ namespace Flappy
 
         public void ShareScore(int currentScore)
         {
-            FB.ShareLink( 
-                new System.Uri("http://google.com"),
-                "Check it out",
-                $"Scored : {currentScore}. Can yo ubeat it? ", 
-                new System.Uri("http://www.google.com") );
+            FB.ShareLink(new System.Uri(FacebookConfig.ShareURL),
+                FacebookConfig.GetShowScoreText(currentScore),
+                FacebookConfig.GetShowScoreText(currentScore),
+                new Uri(FacebookConfig.SharePhotoURL));
+
         }
     }
 }

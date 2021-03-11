@@ -26,10 +26,6 @@ namespace Flappy
         private Save _save = new Save();
         public static Save Save => _instance._save;
         
-        public void FbShare()
-        {
-            FacebookManager.ShareScore(5);
-        }
 
         public override string GetUserId()
         {
