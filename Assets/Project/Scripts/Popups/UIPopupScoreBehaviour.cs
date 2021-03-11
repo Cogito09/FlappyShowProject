@@ -39,13 +39,14 @@ namespace Flappy
             var bestScoresList = FlappyScoreManager.BestScores;
             for (int i = 0; i < bestScoresList.Count; i++)
             {
-                if (i <= _scores.Count)
+                if (_scores.Count <= i)
                 {
                     _scores.Add(InstantiateNewSlot());
                 }
 
                 var score = bestScoresList[i];
                 var scoreIndex = i + 1;
+                _scores[i].gameObject.Activate();
                 _scores[i].Setup(scoreIndex,score.Score);
             }
         }

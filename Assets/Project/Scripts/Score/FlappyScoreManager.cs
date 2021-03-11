@@ -105,9 +105,9 @@ namespace Flappy
 
         private void OnFlappyRoundFinished()
         {
-            Log.Info("OnFlappy Finished");
             LogCurrentScore();
             ValidateScore();
+            Log.Info("OnFlappy Finished");
         }
         
         private void ValidateScore()
@@ -125,7 +125,7 @@ namespace Flappy
 
         private List<FlappyScoreData> TrimScoreListToBest(List<FlappyScoreData> scores)
         {
-            if (scores.Count -1  > MaxNumberOfStoredSaves)
+            if (scores.Count   > MaxNumberOfStoredSaves)
             {
                 for (int i = scores.Count - 1; i >= MaxNumberOfStoredSaves; i--)
                 {

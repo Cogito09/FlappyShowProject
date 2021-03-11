@@ -27,6 +27,7 @@ MonoBehaviour:
   _bgYPosition: 1.75
   BombUseDoubleClickInterval: 0.15
   SightDistance: 3.5
+  MaxNumberOfStoredScoreSaves: 5
   FlappyStageConfigs:
   - Id: 1
     MinScoreRangeInclusive: 0

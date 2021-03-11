@@ -14,15 +14,14 @@ namespace Flappy
                 {
                     return _bestScoresSave;
                 }
-
-                var data = DataStore.Load("BestScore", JsonSerializer.Serialize(new List<FlappyScoreData>()));
-                _bestScoresSave = JsonSerializer.Deserialize<List<FlappyScoreData>>(data);
+                
+                _bestScoresSave = DataStore.Load("BestScore",new List<FlappyScoreData>());
                 return _bestScoresSave;
             }
 
             set
             {
-                DataStore.Save("BestScore", JsonSerializer.Serialize(_bestScoresSave));
+                DataStore.Save<List<FlappyScoreData>>( value,"BestScore");
                 _bestScoresSave = null;
             }
         }

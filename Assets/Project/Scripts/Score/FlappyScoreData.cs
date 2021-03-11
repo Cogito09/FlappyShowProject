@@ -20,8 +20,14 @@ namespace Flappy
             {
                 return 1;
             }
+
+           
+            if (Score > other.Score)
+            {
+                return - 1;
+            }
             
-            return Score.CompareTo(other.Score);
+            return 1;
         }
     }
 }
