@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Cngine;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Random = System.Random;
@@ -21,7 +22,9 @@ namespace Flappy
             
             public Color RandomizeColor()
             {
-                return ColorRange.Evaluate(UnityEngine.Random.Range(0, 1));
+                var colorRandomization = UnityEngine.Random.Range(0f, 1f);
+                Log.Info($"stickColorRandomizationValue : {colorRandomization}");
+                return ColorRange.Evaluate(colorRandomization);
             }
         }
         
